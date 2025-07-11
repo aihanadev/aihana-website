@@ -15,18 +15,25 @@ body {
 /* Navigation Styles */
 .main-nav {
   width: 100%;
-  max-width: 1200px;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 1rem 2rem;
+  padding: 2rem 0;
   margin-bottom: 2rem;
 }
 
 .nav-logo {
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   font-weight: bold;
   color: #6B57FF;
+  text-align: center;
+  letter-spacing: 0.5px;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.nav-logo:hover {
+  color: #8B7FFF;
 }
 
 .container {
@@ -307,56 +314,23 @@ footer a {
   color: #bbb;
 }
 
-/* Navigation for create-a-game page */
-.nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 0;
-  margin-bottom: 2rem;
-}
-
-.logo {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: #6B57FF;
-  text-decoration: none;
-}
-
-.nav-links {
-  display: flex;
-  gap: 2rem;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.nav-links a {
-  color: #EFEAFF;
-  text-decoration: none;
-  padding: 0.5rem 1rem;
-  border-radius: 5px;
-  transition: all 0.3s ease;
-}
-
-.nav-links a:hover {
-  background-color: rgba(107, 87, 255, 0.1);
-  color: #6B57FF;
-}
-
-.nav-links a.active {
-  background-color: #6B57FF;
-  color: white;
-}
 
 /* Mobile responsive */
 @media (max-width: 768px) {
   .main-nav {
-    padding: 1rem;
+    padding: 1.5rem 0;
   }
   
   .nav-logo {
-    font-size: 1.25rem;
+    font-size: 1.5rem;
+  }
+  
+  .tagline-main {
+    font-size: 2rem;
+  }
+  
+  .tagline-sub {
+    font-size: 1rem;
   }
   
   .cta-buttons {
@@ -370,8 +344,12 @@ footer a {
     text-align: center;
   }
   
-  .cta-section .btn-secondary {
-    margin-left: 0;
-    margin-top: 1rem;
+  .community-links {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .community-card {
+    padding: 1.5rem;
   }
 }
