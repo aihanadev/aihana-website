@@ -17,7 +17,7 @@ body {
   width: 100%;
   max-width: 1200px;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   padding: 1rem 2rem;
   margin-bottom: 2rem;
@@ -27,29 +27,6 @@ body {
   font-size: 1.5rem;
   font-weight: bold;
   color: #6B57FF;
-}
-
-.nav-links {
-  display: flex;
-  gap: 2rem;
-}
-
-.nav-link {
-  color: #EFEAFF;
-  text-decoration: none;
-  padding: 0.5rem 1rem;
-  border-radius: 5px;
-  transition: all 0.3s ease;
-}
-
-.nav-link:hover {
-  background-color: rgba(107, 87, 255, 0.1);
-  color: #6B57FF;
-}
-
-.nav-link.active {
-  background-color: #6B57FF;
-  color: white;
 }
 
 .container {
@@ -125,7 +102,7 @@ footer a {
   flex-wrap: wrap;
 }
 
-.notify-button, .create-game-button {
+.notify-button, .community-button {
   display: inline-block;
   padding: 0.75rem 1.5rem;
   font-weight: bold;
@@ -146,13 +123,13 @@ footer a {
   transform: translateY(-2px);
 }
 
-.create-game-button.secondary, .btn-secondary {
+.community-button.secondary, .btn-secondary {
   background-color: transparent;
   color: #6B57FF;
   border: 2px solid #6B57FF;
 }
 
-.create-game-button.secondary:hover, .btn-secondary:hover {
+.community-button.secondary:hover, .btn-secondary:hover {
   background-color: #6B57FF;
   color: white;
   transform: translateY(-2px);
@@ -168,10 +145,97 @@ footer a {
   margin-left: 1rem;
 }
 
-.reddit-embed {
-  margin-top: 2rem;
+/* Community Section Styles */
+.community-section {
+  margin-top: 3rem;
+}
+
+.community-section h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #6B57FF;
+}
+
+.community-links {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin: 2rem 0;
+}
+
+.community-card {
+  background: rgba(75, 63, 114, 0.2);
+  border: 1px solid #6B57FF;
+  border-radius: 15px;
+  padding: 2rem;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.community-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(107, 87, 255, 0.3);
+}
+
+.community-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: #EFEAFF;
+}
+
+.community-card p {
+  margin-bottom: 1.5rem;
+  color: #bbb;
+}
+
+.community-link {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background-color: #6B57FF;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.community-link:hover {
+  background-color: #5845d6;
+  transform: translateY(-2px);
+}
+
+.reddit-widget-container {
+  margin-top: 3rem;
+  background: rgba(75, 63, 114, 0.1);
+  border-radius: 15px;
+  padding: 2rem;
+}
+
+.reddit-widget-container h3 {
+  color: #6B57FF;
+  margin-bottom: 1rem;
+}
+
+.reddit-posts {
+  background: #1a1a1a;
   border-radius: 10px;
-  overflow: hidden;
+  padding: 2rem;
+  min-height: 200px;
+  border: 1px solid #444;
+}
+
+.loading-message {
+  text-align: center;
+  color: #bbb;
+}
+
+.loading-message a {
+  color: #6B57FF;
+  text-decoration: none;
+}
+
+.loading-message a:hover {
+  text-decoration: underline;
 }
 
 /* Utility classes for create-a-game page */
@@ -288,19 +352,22 @@ footer a {
 /* Mobile responsive */
 @media (max-width: 768px) {
   .main-nav {
-    flex-direction: column;
-    gap: 1rem;
+    padding: 1rem;
   }
   
-  .nav-links {
-    flex-direction: column;
-    gap: 1rem;
-    text-align: center;
+  .nav-logo {
+    font-size: 1.25rem;
   }
   
   .cta-buttons {
     flex-direction: column;
     align-items: center;
+  }
+  
+  .notify-button, .community-button {
+    margin: 0.5rem 0;
+    width: 200px;
+    text-align: center;
   }
   
   .cta-section .btn-secondary {

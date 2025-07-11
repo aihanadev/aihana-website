@@ -14,7 +14,7 @@
   ## Features
   - **Landing Page** (`index.html`) - Main marketing page with video showcase
   - **Create-a-Game Page** (`create-a-game.html`) - Community submission portal
-  - **Reddit Integration** - Embedded r/aihana community
+  - **Reddit Integration** - Community cards with direct links to r/aihana (iframe-free for security)
   - **Responsive Design** - Works on all device sizes
   - **Professional Navigation** - Clean header with active states
 
