@@ -54,6 +54,7 @@ body {
   transform: translateY(-1px);
 }
 
+
 .container {
   text-align: center;
   max-width: 90%;
@@ -169,6 +170,7 @@ footer a {
   font-size: 1rem;
   line-height: 1.4;
 }
+
 
 .cta-buttons {
   display: flex;
