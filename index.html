@@ -5,6 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Aihana — A Dealer Who Remembers™</title>
   <link rel="stylesheet" href="styles.css" />
+  <script>
+    // Redirect to Living Deck splash on first visit
+    if (!sessionStorage.getItem('visited')) {
+      window.location.href = 'living-deck.html';
+    }
+  </script>
 </head>
 <body>
   <div class="container">
@@ -20,15 +26,6 @@
 
     <section class="cta">
       <p>AIHANA™ is a multiplayer card gaming platform where virtual cards remember every interaction across sessions and players can create custom rules by demonstrating moves and explaining in plain language. Share your custom games with friends and play together asynchronously, guided by an AI dealer that adapts to each player's style. Patent pending.</p>
-      
-      <div class="living-deck-preview">
-        <a href="living-deck.html" class="living-deck-link">
-          <div class="living-deck-text">
-            <h3>Experience The Living Deck</h3>
-            <p>"Cards in hand are like drops in a river. Each one, when cast, ripples into forever."</p>
-          </div>
-        </a>
-      </div>
       
       <div class="cta-buttons">
         <a class="notify-button primary" href="https://docs.google.com/forms/d/e/1FAIpQLSelN0m0twI7-2TPMUUtK7pwDAveQ6raQnzOqSzC7a5owrTT0g/viewform" target="_blank">Get Notified</a>

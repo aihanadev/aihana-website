@@ -147,8 +147,8 @@
     </section>
 
     <nav class="cta" aria-label="Primary">
-      <a href="index.html" class="btn">Enter AIHANA</a>
-      <a href="#continue" class="btn secondary" onclick="continueToMain()">Learn More</a>
+      <a href="#continue" class="btn" onclick="continueToMain()">Enter AIHANA</a>
+      <a href="index.html" class="btn secondary">Learn More</a>
     </nav>
 
     <div class="foot">A Dealer Who Remembers. A Deck That Lives. — Patent pending.</div>
@@ -178,6 +178,9 @@
 
     // Function to smoothly transition to main page
     function continueToMain() {
+      // Mark as visited so they don't get redirected back
+      sessionStorage.setItem('visited', 'true');
+      
       // Fade out effect
       document.body.style.transition = 'opacity 0.8s ease';
       document.body.style.opacity = '0';
