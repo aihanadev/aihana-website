@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>AIHANA — The Living Deck</title>
+  <title>AIHANA — The Living Deck™</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="A dealer who remembers. A deck that lives. Play together asynchronously with the Living Deck™." />
-  <meta property="og:title" content="AIHANA — The Living Deck" />
+  <meta property="og:title" content="AIHANA — The Living Deck™" />
   <meta property="og:description" content="A dealer who remembers. A deck that lives. Play together asynchronously with the Living Deck™." />
   <meta property="og:type" content="website" />
   <meta name="theme-color" content="#6b3ef8" />
@@ -52,6 +52,19 @@
     @keyframes drift { from{ transform:translateX(-50%) translateY(0) } to{ transform:translateX(-45%) translateY(0) } }
     .river{ top:-6rem; animation:drift 28s linear infinite; }
     .river2{ bottom:-4rem; animation:drift 36s linear infinite reverse; }
+
+    /* Dynamic ripples */
+    .ripple{
+      position:fixed; pointer-events:none; z-index:-1;
+      width:20px; height:20px; border-radius:50%;
+      border:2px solid rgba(124,77,255,0.6);
+      animation:rippleOut 3s ease-out forwards;
+    }
+    @keyframes rippleOut{
+      0%{ transform:scale(0); opacity:0.8; border-width:3px; }
+      50%{ opacity:0.4; }
+      100%{ transform:scale(25); opacity:0; border-width:1px; }
+    }
 
     /* Typography */
     h1{
@@ -121,7 +134,7 @@
   <!-- Hero -->
   <main class="wrap">
     <header>
-      <h1>The Living Deck</h1>
+      <h1>The Living Deck<span style="font-size:0.7em;vertical-align:super;opacity:0.8;">™</span></h1>
     </header>
 
     <section class="poem" aria-label="Aihana poem">
@@ -134,7 +147,7 @@
       <span class="line">But the true dealer remembers.</span>
       <span class="line">Each current, each stone, each bend of the flow.</span>
       <span class="line"></span>
-      <span class="line">The Living Deck is no mere game.</span>
+      <span class="line">The Living Deck™ is no mere game.</span>
       <span class="line">It is memory embodied,</span>
       <span class="line">teaching carried in silence,</span>
       <span class="line">a path revealed in play.</span>
@@ -151,13 +164,42 @@
       <a href="index.html" class="btn secondary">Learn More</a>
     </nav>
 
-    <div class="foot">A Dealer Who Remembers. A Deck That Lives. — Patent pending.</div>
+    <div class="foot">A Dealer Who Remembers. A Deck That Lives. — The Living Deck™ is patent pending.</div>
   </main>
 
   <script>
     (function(){
       const lines = Array.from(document.querySelectorAll('.line'));
       const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      // Create ripple effect
+      function createRipple(isKeyLine = false) {
+        const ripple = document.createElement('div');
+        ripple.className = 'ripple';
+        
+        // Random position across the viewport  
+        const x = Math.random() * window.innerWidth;
+        const y = Math.random() * window.innerHeight;
+        
+        ripple.style.left = x + 'px';
+        ripple.style.top = y + 'px';
+        
+        // Key lines get larger, more prominent ripples
+        if (isKeyLine) {
+          ripple.style.borderColor = 'rgba(124,77,255,0.8)';
+          ripple.style.borderWidth = '4px';
+          ripple.style.animationDuration = '4s';
+        }
+        
+        document.body.appendChild(ripple);
+        
+        // Remove ripple after animation
+        setTimeout(() => {
+          if (ripple.parentNode) {
+            ripple.parentNode.removeChild(ripple);
+          }
+        }, isKeyLine ? 4000 : 3000);
+      }
 
       if (reduce){
         lines.forEach(l => l.classList.add('show'));
@@ -169,11 +211,30 @@
         if (i >= lines.length) return;
         const el = lines[i++];
         el.classList.add('show');
-        const pause = el.textContent.trim() === '' ? 500 : 1200; // shorter gap for stanza breaks
+        
+        const text = el.textContent.trim();
+        
+        // Identify key lines for special ripples
+        const isKeyLine = text.includes('Living Deck™') || text.includes('river') || text.includes('forever') || text.includes('remembers') || text.includes('story');
+        
+        // Create ripple for non-empty lines
+        if (text !== '') {
+          createRipple(isKeyLine);
+        }
+        
+        let pause;
+        if (text === '') {
+          pause = 800; // Breathing space between stanzas
+        } else if (isKeyLine) {
+          pause = 1800; // Key concepts need time to settle
+        } else {
+          pause = 1400; // Gentle rhythm for most lines
+        }
+        
         setTimeout(revealNext, pause);
       }
-      // small initial delay for drama
-      setTimeout(revealNext, 500);
+      // Initial pause for presence
+      setTimeout(revealNext, 1000);
     })();
 
     // Function to smoothly transition to main page
