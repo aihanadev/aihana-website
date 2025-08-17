@@ -20,9 +20,36 @@
     body{
       margin:0; color:var(--ink);
       font:16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Inter, "Helvetica Neue", Arial, "Apple Color Emoji","Segoe UI Emoji";
-      background:linear-gradient(to bottom,var(--bg-top),var(--bg-mid),var(--bg-bot));
+      background:#000000;
       overflow-x:hidden;
     }
+    
+    /* Mystical video background */
+    .mystical-bg {
+      position: fixed;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      min-width: 100%;
+      min-height: 100%;
+      width: auto;
+      height: auto;
+      z-index: -3;
+      opacity: 0.6;
+      filter: contrast(1.1) brightness(0.9);
+    }
+    
+    /* Dark overlay for text readability */
+    .overlay-gradient {
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      background: radial-gradient(ellipse at center, 
+        rgba(26,11,46,0.3) 0%, 
+        rgba(18,7,33,0.5) 40%, 
+        rgba(0,0,0,0.7) 100%);
+      pointer-events: none;
+    }
+    
     .wrap{
       min-height:100svh;
       display:grid;
@@ -53,54 +80,101 @@
     .river{ top:-6rem; animation:drift 28s linear infinite; }
     .river2{ bottom:-4rem; animation:drift 36s linear infinite reverse; }
 
-    /* Dynamic ripples */
+    /* Dynamic ripples - Enhanced for mystical background */
     .ripple{
-      position:fixed; pointer-events:none; z-index:-1;
+      position:fixed; pointer-events:none; z-index:1;
       width:20px; height:20px; border-radius:50%;
-      border:2px solid rgba(124,77,255,0.6);
-      animation:rippleOut 3s ease-out forwards;
+      border:3px solid rgba(233,228,255,0.9);
+      box-shadow: 
+        0 0 20px rgba(124,77,255,0.8),
+        0 0 40px rgba(155,140,255,0.6) inset;
+      animation:rippleOut 4s ease-out forwards;
     }
     @keyframes rippleOut{
-      0%{ transform:scale(0); opacity:0.8; border-width:3px; }
-      50%{ opacity:0.4; }
-      100%{ transform:scale(25); opacity:0; border-width:1px; }
+      0%{ 
+        transform:scale(0); 
+        opacity:1; 
+        border-width:4px;
+        filter: brightness(1.5);
+      }
+      50%{ 
+        opacity:0.5;
+        filter: brightness(1.2);
+      }
+      100%{ 
+        transform:scale(30); 
+        opacity:0; 
+        border-width:1px;
+        filter: brightness(1);
+      }
     }
 
-    /* Typography */
+    /* Typography - Enhanced for mystical background */
     h1{
       margin:0 0 1rem;
       font-weight:900; letter-spacing:.02em;
       font-size:clamp(2.25rem, 4vw, 4rem);
       color:var(--white);
-      text-shadow:0 0 12px rgba(124,77,255,.35);
+      text-shadow:
+        0 0 20px rgba(124,77,255,.8),
+        0 0 40px rgba(124,77,255,.5),
+        0 0 60px rgba(124,77,255,.3);
+      animation: subtle-glow 4s ease-in-out infinite alternate;
     }
+    
+    @keyframes subtle-glow {
+      from { filter: brightness(1); }
+      to { filter: brightness(1.1); }
+    }
+    
     .poem{
       max-width:48rem; margin-inline:auto;
       font-size:clamp(1.0625rem, 1.6vw, 1.25rem);
       white-space:pre-line;
+      text-shadow: 0 0 10px rgba(233,228,255,.3);
     }
     .line{
       opacity:0; transform:translateY(6px);
       transition:opacity .8s ease, transform .8s ease;
+      backdrop-filter: blur(1px);
     }
-    .line.show{ opacity:1; transform:translateY(0) }
+    .line.show{ 
+      opacity:1; 
+      transform:translateY(0);
+      text-shadow: 
+        0 0 15px rgba(233,228,255,.4),
+        0 2px 4px rgba(0,0,0,.5);
+    }
 
-    /* Buttons */
+    /* Buttons - Mystical enhancement */
     .cta{ margin-top:2.5rem; display:flex; gap:.75rem; justify-content:center; flex-wrap:wrap }
     .btn{
       appearance:none; border:0; cursor:pointer;
       padding:.9rem 1.25rem; border-radius:16px; font-weight:700;
       color:var(--white); background:linear-gradient(90deg,var(--violet),var(--violet-2));
-      box-shadow:0 10px 30px rgba(124,77,255,.35);
-      transition:transform .2s ease, filter .2s ease;
+      box-shadow:
+        0 10px 30px rgba(124,77,255,.5),
+        0 0 40px rgba(124,77,255,.3) inset;
+      transition:all .3s ease;
       text-decoration:none; display:inline-block;
+      backdrop-filter: blur(10px);
     }
-    .btn:hover{ transform:translateY(-1px) }
+    .btn:hover{ 
+      transform:translateY(-2px) scale(1.02);
+      box-shadow:
+        0 15px 40px rgba(124,77,255,.6),
+        0 0 60px rgba(124,77,255,.4) inset;
+    }
     .btn.secondary{
-      background:rgba(255,255,255,.06); color:var(--ink);
-      box-shadow:none; border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.08); color:var(--ink);
+      box-shadow:0 0 20px rgba(233,228,255,.2); 
+      border:1px solid rgba(255,255,255,.2);
+      backdrop-filter: blur(10px);
     }
-    .btn.secondary:hover{ filter:brightness(1.1) }
+    .btn.secondary:hover{ 
+      filter:brightness(1.2);
+      border-color: rgba(124,77,255,.5);
+    }
 
     /* Motion preferences */
     @media (prefers-reduced-motion: reduce){
@@ -113,6 +187,14 @@
   </style>
 </head>
 <body>
+  <!-- Mystical video background -->
+  <video class="mystical-bg" autoplay muted loop playsinline>
+    <source src="assets/Mystical Card Enchantment_.mp4" type="video/mp4">
+  </video>
+  
+  <!-- Dark overlay for text contrast -->
+  <div class="overlay-gradient"></div>
+  
   <!-- SVG defs for gradient -->
   <svg width="0" height="0" style="position:absolute">
     <defs>
