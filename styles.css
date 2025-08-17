@@ -1,0 +1,429 @@
+
+body {
+  margin: 0;
+  font-family: 'Helvetica Neue', sans-serif;
+  background-color: #2A1D4C;
+  color: #EFEAFF;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Navigation Styles */
+.main-nav {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  padding: 2rem 2rem;
+  margin: 0 auto 2rem;
+}
+
+.nav-logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #6B57FF;
+  letter-spacing: 0.5px;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.nav-logo:hover {
+  color: #8B7FFF;
+}
+
+.nav-living-deck {
+  color: #EFEAFF;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.nav-living-deck:hover {
+  background: rgba(107, 87, 255, 0.2);
+  border-color: #6B57FF;
+  transform: translateY(-1px);
+}
+
+.container {
+  text-align: center;
+  max-width: 90%;
+  margin: 0 auto;
+  padding-bottom: 4rem;
+}
+
+header {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.tagline-main {
+  font-size: 2.5rem;
+  color: #6B57FF;
+}
+
+.tm {
+  font-size: 0.8rem;
+  vertical-align: super;
+}
+
+.tagline-sub {
+  font-size: 1.2rem;
+  color: #EFEAFF;
+  margin-top: 0.5rem;
+}
+
+.video-showcase {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem 1rem;
+  background-color: #2A1D4C;
+}
+
+.video-frame {
+  border: 8px solid #4B3F72;
+  border-radius: 30px;
+  overflow: hidden;
+  max-width: 360px;
+  box-shadow: 0 0 30px rgba(107, 87, 255, 0.5);
+}
+
+.video-frame video {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+footer {
+  margin-top: 2rem;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #bbb;
+}
+
+footer a {
+  color: #bbb;
+  text-decoration: underline;
+}
+
+.cta {
+  margin-top: 2rem;
+}
+
+.cta p {
+  font-size: 1.1rem;
+  line-height: 1.5;
+  margin-bottom: 2rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  color: #EFEAFF;
+}
+
+/* Living Deck Preview */
+.living-deck-preview {
+  margin: 2rem 0;
+}
+
+.living-deck-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  padding: 2rem;
+  background: linear-gradient(135deg, rgba(107, 87, 255, 0.1), rgba(155, 140, 255, 0.05));
+  border: 1px solid rgba(107, 87, 255, 0.2);
+  border-radius: 16px;
+  transition: all 0.3s ease;
+  margin: 0 auto;
+  max-width: 500px;
+}
+
+.living-deck-link:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(135deg, rgba(107, 87, 255, 0.2), rgba(155, 140, 255, 0.1));
+  border-color: rgba(107, 87, 255, 0.4);
+  box-shadow: 0 8px 32px rgba(107, 87, 255, 0.2);
+}
+
+.living-deck-text h3 {
+  margin: 0 0 0.5rem 0;
+  color: #FFFFFF;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.living-deck-text p {
+  margin: 0;
+  font-style: italic;
+  color: #EFEAFF;
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+.cta-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.notify-button, .community-button {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  font-weight: bold;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  margin: 0.5rem;
+}
+
+.notify-button.primary, .btn-primary {
+  background-color: #6B57FF;
+  color: white;
+  box-shadow: 0 0 10px rgba(107, 87, 255, 0.4);
+}
+
+.notify-button.primary:hover, .btn-primary:hover {
+  background-color: #5845d6;
+  transform: translateY(-2px);
+}
+
+.community-button.secondary, .btn-secondary {
+  background-color: transparent;
+  color: #6B57FF;
+  border: 2px solid #6B57FF;
+}
+
+.community-button.secondary:hover, .btn-secondary:hover {
+  background-color: #6B57FF;
+  color: white;
+  transform: translateY(-2px);
+}
+
+/* For create-a-game page */
+.cta-section {
+  margin: 2rem 0;
+  text-align: center;
+}
+
+.ml-4 {
+  margin-left: 1rem;
+}
+
+/* Community Section Styles */
+.community-section {
+  margin-top: 3rem;
+}
+
+.community-section h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #6B57FF;
+}
+
+.community-links {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin: 2rem 0;
+}
+
+.community-card {
+  background: rgba(75, 63, 114, 0.2);
+  border: 1px solid #6B57FF;
+  border-radius: 15px;
+  padding: 2rem;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.community-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(107, 87, 255, 0.3);
+}
+
+.community-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: #EFEAFF;
+}
+
+.community-card p {
+  margin-bottom: 1.5rem;
+  color: #bbb;
+}
+
+.community-link {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background-color: #6B57FF;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.community-link:hover {
+  background-color: #5845d6;
+  transform: translateY(-2px);
+}
+
+.reddit-widget-container {
+  margin-top: 3rem;
+  background: rgba(75, 63, 114, 0.1);
+  border-radius: 15px;
+  padding: 2rem;
+}
+
+.reddit-widget-container h3 {
+  color: #6B57FF;
+  margin-bottom: 1rem;
+}
+
+.reddit-posts {
+  background: #1a1a1a;
+  border-radius: 10px;
+  padding: 2rem;
+  min-height: 200px;
+  border: 1px solid #444;
+}
+
+.loading-message {
+  text-align: center;
+  color: #bbb;
+}
+
+.loading-message a {
+  color: #6B57FF;
+  text-decoration: none;
+}
+
+.loading-message a:hover {
+  text-decoration: underline;
+}
+
+/* Utility classes for create-a-game page */
+.bg-dark {
+  background-color: #2A1D4C;
+}
+
+.text-light {
+  color: #EFEAFF;
+}
+
+.font-inter {
+  font-family: 'Inter', 'Helvetica Neue', sans-serif;
+}
+
+.mt-10 {
+  margin-top: 2.5rem;
+}
+
+.mb-16 {
+  margin-bottom: 4rem;
+}
+
+.mb-4 {
+  margin-bottom: 1rem;
+}
+
+.mb-6 {
+  margin-bottom: 1.5rem;
+}
+
+.mb-8 {
+  margin-bottom: 2rem;
+}
+
+.mt-8 {
+  margin-top: 2rem;
+}
+
+.mt-12 {
+  margin-top: 3rem;
+}
+
+.pt-6 {
+  padding-top: 1.5rem;
+}
+
+.text-4xl {
+  font-size: 2.25rem;
+}
+
+.text-lg {
+  font-size: 1.125rem;
+}
+
+.text-sm {
+  font-size: 0.875rem;
+}
+
+.font-bold {
+  font-weight: bold;
+}
+
+.border-t {
+  border-top: 1px solid #444;
+}
+
+.text-muted {
+  color: #bbb;
+}
+
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .main-nav {
+    padding: 1.5rem 0;
+  }
+  
+  .nav-logo {
+    font-size: 1.5rem;
+  }
+  
+  .tagline-main {
+    font-size: 2rem;
+  }
+  
+  .tagline-sub {
+    font-size: 1rem;
+  }
+  
+  .cta p {
+    font-size: 1rem;
+    padding: 0 1rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .cta-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .notify-button, .community-button {
+    margin: 0.5rem 0;
+    width: 200px;
+    text-align: center;
+  }
+  
+  .community-links {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .community-card {
+    padding: 1.5rem;
+  }
+}

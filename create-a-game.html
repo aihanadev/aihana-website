@@ -1,0 +1,79 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Create a Game | Aihana</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="bg-dark text-light font-inter">
+  <header class="container">
+    <nav class="main-nav">
+      <a href="index.html" class="nav-logo">Aihana</a>
+    </nav>
+  </header>
+
+  <main class="container mt-10 mb-16">
+    <h1 class="text-4xl font-bold mb-4">Create a Game</h1>
+    <p class="text-lg mb-6">Submit your custom card game rules to the Aihana community. Our Dealer is listening.</p>
+
+    <div class="cta-section mb-8">
+      <a class="btn-primary" href="https://www.reddit.com/r/aihana/" target="_blank">
+        Join the Community →
+      </a>
+      <a class="btn-secondary ml-4" href="https://www.reddit.com/r/aihana/submit" target="_blank">
+        Submit Your Ruleset
+      </a>
+    </div>
+
+    <div class="community-section">
+      <h2>Join the Community Discussion</h2>
+      <p>Connect with other game creators and share your rulesets on our Reddit community.</p>
+      
+      <!-- Community Cards - Better than broken iframe -->
+      <div class="community-links">
+        <div class="community-card">
+          <h3>📝 Submit Your Game</h3>
+          <p>Share your custom card game rules with the community</p>
+          <a href="https://www.reddit.com/r/aihana/submit" target="_blank" class="community-link">
+            Create Post →
+          </a>
+        </div>
+        
+        <div class="community-card">
+          <h3>💬 Join Discussions</h3>
+          <p>Read what others are saying and participate in conversations</p>
+          <a href="https://www.reddit.com/r/aihana/" target="_blank" class="community-link">
+            Browse Community →
+          </a>
+        </div>
+        
+        <div class="community-card">
+          <h3>🎯 Latest Rules</h3>
+          <p>Check out the newest rule submissions and game variations</p>
+          <a href="https://www.reddit.com/r/aihana/new" target="_blank" class="community-link">
+            View Recent →
+          </a>
+        </div>
+      </div>
+      
+      <!-- Reddit widget attempt with fallback -->
+      <div class="reddit-widget-container">
+        <h3>Recent Community Posts</h3>
+        <div id="reddit-posts" class="reddit-posts">
+          <div class="loading-message">
+            <p>Loading recent posts from r/aihana...</p>
+            <p><a href="https://www.reddit.com/r/aihana/" target="_blank">Visit Reddit directly if this doesn't load</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="container border-t pt-6 mt-12 text-sm text-muted">
+    <p>Aihana™ | One Table. Infinite Games. © 2025</p>
+  </footer>
+</body>
+</html>

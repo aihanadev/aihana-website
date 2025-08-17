@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>AIHANA — The Living Deck</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="A dealer who remembers. A deck that lives. Play together asynchronously with the Living Deck™." />
+  <meta property="og:title" content="AIHANA — The Living Deck" />
+  <meta property="og:description" content="A dealer who remembers. A deck that lives. Play together asynchronously with the Living Deck™." />
+  <meta property="og:type" content="website" />
+  <meta name="theme-color" content="#6b3ef8" />
+  <style>
+    :root{
+      --bg-top:#1a0b2e; --bg-mid:#120721; --bg-bot:#000000;
+      --violet:#7c4dff; --violet-2:#9b8cff; --ink:#e9e4ff; --white:#fff;
+    }
+    /* Base */
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; color:var(--ink);
+      font:16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Inter, "Helvetica Neue", Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background:linear-gradient(to bottom,var(--bg-top),var(--bg-mid),var(--bg-bot));
+      overflow-x:hidden;
+    }
+    .wrap{
+      min-height:100svh;
+      display:grid;
+      place-items:center;
+      position:relative;
+      text-align:center;
+      padding:5rem 1.5rem 3rem;
+      isolation:isolate;
+    }
+
+    /* Soft vignette */
+    .wrap::after{
+      content:"";
+      position:fixed; inset:0; pointer-events:none; z-index:0;
+      background:radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,.55) 100%);
+    }
+
+    /* Gentle river shapes */
+    .river, .river2{
+      position:fixed; left:50%; transform:translateX(-50%);
+      width:1800px; height:900px; opacity:.35; z-index:-1; pointer-events:none;
+      filter:blur(0.2px);
+    }
+    .river path{ fill:url(#riverGrad); }
+    .river2 path{ fill:#7c4dff0d; }
+
+    @keyframes drift { from{ transform:translateX(-50%) translateY(0) } to{ transform:translateX(-45%) translateY(0) } }
+    .river{ top:-6rem; animation:drift 28s linear infinite; }
+    .river2{ bottom:-4rem; animation:drift 36s linear infinite reverse; }
+
+    /* Typography */
+    h1{
+      margin:0 0 1rem;
+      font-weight:900; letter-spacing:.02em;
+      font-size:clamp(2.25rem, 4vw, 4rem);
+      color:var(--white);
+      text-shadow:0 0 12px rgba(124,77,255,.35);
+    }
+    .poem{
+      max-width:48rem; margin-inline:auto;
+      font-size:clamp(1.0625rem, 1.6vw, 1.25rem);
+      white-space:pre-line;
+    }
+    .line{
+      opacity:0; transform:translateY(6px);
+      transition:opacity .8s ease, transform .8s ease;
+    }
+    .line.show{ opacity:1; transform:translateY(0) }
+
+    /* Buttons */
+    .cta{ margin-top:2.5rem; display:flex; gap:.75rem; justify-content:center; flex-wrap:wrap }
+    .btn{
+      appearance:none; border:0; cursor:pointer;
+      padding:.9rem 1.25rem; border-radius:16px; font-weight:700;
+      color:var(--white); background:linear-gradient(90deg,var(--violet),var(--violet-2));
+      box-shadow:0 10px 30px rgba(124,77,255,.35);
+      transition:transform .2s ease, filter .2s ease;
+      text-decoration:none; display:inline-block;
+    }
+    .btn:hover{ transform:translateY(-1px) }
+    .btn.secondary{
+      background:rgba(255,255,255,.06); color:var(--ink);
+      box-shadow:none; border:1px solid rgba(255,255,255,.12);
+    }
+    .btn.secondary:hover{ filter:brightness(1.1) }
+
+    /* Motion preferences */
+    @media (prefers-reduced-motion: reduce){
+      .river,.river2{ animation:none }
+      .line{ transition:none; opacity:1; transform:none }
+    }
+
+    /* Footer note */
+    .foot{ opacity:.7; margin-top:2rem; font-size:.95rem }
+  </style>
+</head>
+<body>
+  <!-- SVG defs for gradient -->
+  <svg width="0" height="0" style="position:absolute">
+    <defs>
+      <linearGradient id="riverGrad" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#7c4dff" stop-opacity=".35"/>
+        <stop offset="100%" stop-color="#9b8cff" stop-opacity=".06"/>
+      </linearGradient>
+    </defs>
+  </svg>
+
+  <!-- River layers -->
+  <svg class="river" viewBox="0 0 1600 800" aria-hidden="true">
+    <path d="M0 200 C 200 160, 400 240, 600 200 C 800 160, 1000 240, 1200 200 C 1400 160, 1600 240, 1800 200 L 1800 800 L 0 800 Z"></path>
+  </svg>
+  <svg class="river2" viewBox="0 0 1800 900" aria-hidden="true">
+    <path d="M0 320 C 220 280, 440 360, 660 320 C 880 280, 1100 360, 1320 320 C 1540 280, 1760 360, 1980 320 L 1980 900 L 0 900 Z"></path>
+  </svg>
+
+  <!-- Hero -->
+  <main class="wrap">
+    <header>
+      <h1>The Living Deck</h1>
+    </header>
+
+    <section class="poem" aria-label="Aihana poem">
+      <!-- Each <span class="line"> becomes a step in the reveal -->
+      <span class="line">Cards in hand are like drops in a river.</span>
+      <span class="line">Each one, when cast, ripples into forever.</span>
+      <span class="line"></span>
+      <span class="line">The foolish dealer forgets the stream—</span>
+      <span class="line">deals again as though the water were still.</span>
+      <span class="line">But the true dealer remembers.</span>
+      <span class="line">Each current, each stone, each bend of the flow.</span>
+      <span class="line"></span>
+      <span class="line">The Living Deck is no mere game.</span>
+      <span class="line">It is memory embodied,</span>
+      <span class="line">teaching carried in silence,</span>
+      <span class="line">a path revealed in play.</span>
+      <span class="line"></span>
+      <span class="line">The dealer who remembers</span>
+      <span class="line">does not hold power—</span>
+      <span class="line">he holds story.</span>
+      <span class="line">And through story,</span>
+      <span class="line">players find their way back to one another.</span>
+    </section>
+
+    <nav class="cta" aria-label="Primary">
+      <a href="index.html" class="btn">Enter AIHANA</a>
+      <a href="#continue" class="btn secondary" onclick="continueToMain()">Learn More</a>
+    </nav>
+
+    <div class="foot">A Dealer Who Remembers. A Deck That Lives. — Patent pending.</div>
+  </main>
+
+  <script>
+    (function(){
+      const lines = Array.from(document.querySelectorAll('.line'));
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      if (reduce){
+        lines.forEach(l => l.classList.add('show'));
+        return;
+      }
+
+      let i = 0;
+      function revealNext(){
+        if (i >= lines.length) return;
+        const el = lines[i++];
+        el.classList.add('show');
+        const pause = el.textContent.trim() === '' ? 500 : 1200; // shorter gap for stanza breaks
+        setTimeout(revealNext, pause);
+      }
+      // small initial delay for drama
+      setTimeout(revealNext, 500);
+    })();
+
+    // Function to smoothly transition to main page
+    function continueToMain() {
+      // Fade out effect
+      document.body.style.transition = 'opacity 0.8s ease';
+      document.body.style.opacity = '0';
+      
+      // Navigate after fade
+      setTimeout(() => {
+        window.location.href = 'index.html';
+      }, 800);
+    }
+  </script>
+</body>
+</html>
