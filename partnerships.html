@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Partnerships — Aihana</title>
+  <meta name="description" content="Brand-hosted play experiences on Aihana. Not advertising." />
+  <meta property="og:title" content="Partnerships — Aihana" />
+  <meta property="og:description" content="Brand-hosted play, not advertising. We explore a limited number of brand-hosted play experiences aligned with trust, ritual, and shared moments." />
+  <meta property="og:type" content="website" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* Partnerships page specific styles */
+    .partnerships-container {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 2rem 4rem;
+      text-align: left;
+    }
+
+    .partnerships-header {
+      text-align: center;
+      margin-bottom: 4rem;
+      padding-top: 1rem;
+    }
+
+    .partnerships-header h1 {
+      font-size: 3rem;
+      font-weight: 600;
+      color: #FFFFFF;
+      margin-bottom: 0.75rem;
+      letter-spacing: -0.02em;
+    }
+
+    .partnerships-header .subtitle {
+      font-size: 1.25rem;
+      color: rgba(239, 234, 255, 0.7);
+      font-weight: 400;
+    }
+
+    .intro-text {
+      font-size: 1.125rem;
+      line-height: 1.7;
+      color: #EFEAFF;
+      margin-bottom: 1.5rem;
+    }
+
+    .intro-callout {
+      font-size: 1rem;
+      color: rgba(239, 234, 255, 0.6);
+      font-style: italic;
+      margin-bottom: 4rem;
+    }
+
+    .section {
+      margin-bottom: 3.5rem;
+    }
+
+    .section h2 {
+      font-size: 1.125rem;
+      font-weight: 600;
+      color: #FFFFFF;
+      margin-bottom: 1.25rem;
+      letter-spacing: 0.01em;
+    }
+
+    .section ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .section li {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: rgba(239, 234, 255, 0.85);
+      margin-bottom: 0.75rem;
+      padding-left: 0;
+    }
+
+    .section p {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: rgba(239, 234, 255, 0.85);
+    }
+
+    .section-note {
+      font-size: 0.9375rem;
+      color: rgba(239, 234, 255, 0.6);
+      margin-top: 1rem;
+      font-style: italic;
+    }
+
+    /* Divider */
+    .divider {
+      height: 1px;
+      background: rgba(107, 87, 255, 0.2);
+      margin: 3rem 0;
+    }
+
+    /* Form section */
+    .form-section {
+      margin-top: 4rem;
+    }
+
+    .form-section h2 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #FFFFFF;
+      margin-bottom: 0.5rem;
+      text-align: center;
+    }
+
+    .form-section .form-intro {
+      text-align: center;
+      font-size: 1rem;
+      color: rgba(239, 234, 255, 0.7);
+      margin-bottom: 2.5rem;
+    }
+
+    .inquiry-form {
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: rgba(239, 234, 255, 0.9);
+      margin-bottom: 0.5rem;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.875rem 1rem;
+      font-size: 1rem;
+      color: #EFEAFF;
+      background: rgba(75, 63, 114, 0.2);
+      border: 1px solid rgba(107, 87, 255, 0.3);
+      border-radius: 8px;
+      transition: all 0.2s ease;
+      font-family: inherit;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: #6B57FF;
+      background: rgba(75, 63, 114, 0.3);
+    }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+      color: rgba(239, 234, 255, 0.4);
+    }
+
+    .form-group textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+
+    .form-group .optional {
+      font-size: 0.75rem;
+      color: rgba(239, 234, 255, 0.5);
+      font-weight: 400;
+      margin-left: 0.25rem;
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 1rem;
+      font-size: 1rem;
+      font-weight: 600;
+      color: white;
+      background: #6B57FF;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      margin-top: 0.5rem;
+    }
+
+    .submit-btn:hover {
+      background: #5845d6;
+      transform: translateY(-1px);
+    }
+
+    .submit-btn:active {
+      transform: translateY(0);
+    }
+
+    /* Footer note */
+    .footer-note {
+      text-align: center;
+      font-size: 0.8125rem;
+      color: rgba(239, 234, 255, 0.5);
+      margin-top: 2rem;
+    }
+
+    /* Success message */
+    .success-message {
+      display: none;
+      text-align: center;
+      padding: 2rem;
+      background: rgba(107, 87, 255, 0.1);
+      border-radius: 12px;
+      border: 1px solid rgba(107, 87, 255, 0.3);
+    }
+
+    .success-message h3 {
+      color: #FFFFFF;
+      margin-bottom: 0.5rem;
+    }
+
+    .success-message p {
+      color: rgba(239, 234, 255, 0.7);
+    }
+
+    /* Mobile */
+    @media (max-width: 768px) {
+      .partnerships-container {
+        padding: 0 1.5rem 3rem;
+      }
+
+      .partnerships-header h1 {
+        font-size: 2.25rem;
+      }
+
+      .partnerships-header .subtitle {
+        font-size: 1.125rem;
+      }
+
+      .section {
+        margin-bottom: 2.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <nav class="main-nav">
+      <a href="index.html" class="nav-logo">Aihana</a>
+      <div style="display: flex; gap: 1rem; align-items: center;">
+        <a href="partnerships.html" class="nav-living-deck" style="background: rgba(107, 87, 255, 0.2); border-color: #6B57FF;">Partnerships</a>
+        <a href="living-deck.html" class="nav-living-deck">The Living Deck</a>
+      </div>
+    </nav>
+  </div>
+
+  <div class="partnerships-container">
+    <!-- Header -->
+    <header class="partnerships-header">
+      <h1>Partnerships</h1>
+      <p class="subtitle">Brand-hosted play, not advertising.</p>
+    </header>
+
+    <!-- Intro -->
+    <p class="intro-text">
+      Aihana is a premium social card platform where play feels human, calm, and remembered.
+      We explore a limited number of brand-hosted play experiences aligned with trust, ritual, and shared moments.
+    </p>
+    <p class="intro-callout">This is not an ad network.</p>
+
+    <div class="divider"></div>
+
+    <!-- What this is -->
+    <section class="section">
+      <h2>What this is</h2>
+      <ul>
+        <li>Hosted tables or decks that persist across sessions</li>
+        <li>Ritual moments at session start or event kickoff</li>
+        <li>Opt-in experiences players choose to join</li>
+      </ul>
+      <p class="section-note">Think hosting a game night — not buying impressions.</p>
+    </section>
+
+    <!-- What this is not -->
+    <section class="section">
+      <h2>What this is not</h2>
+      <ul>
+        <li>No interstitials or rewarded ads</li>
+        <li>No behavioral targeting</li>
+        <li>No CPM buying or performance optimization</li>
+        <li>No infinite inventory</li>
+      </ul>
+      <p class="section-note">If it interrupts play, we don't ship it.</p>
+    </section>
+
+    <!-- How we work -->
+    <section class="section">
+      <h2>How we work</h2>
+      <ul>
+        <li>Selective, founder-led discovery</li>
+        <li>Small pilots designed to learn, not scale</li>
+        <li>Hard caps and scarcity by design</li>
+      </ul>
+      <p class="section-note">We prioritize trust and long-term association over reach.</p>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- Form Section -->
+    <section class="form-section">
+      <h2>Partnerships</h2>
+      <p class="form-intro">
+        We work with a small number of brands at a time.<br>
+        If this philosophy resonates, we'd love to talk.
+      </p>
+
+      <div style="text-align: center; margin-top: 2rem;">
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSdVer40h-TM49JIdJ6-vDhOUGLgcGoL8vBZqWsEf23LkSaBpg/viewform"
+           target="_blank"
+           class="submit-btn"
+           style="display: inline-block; text-decoration: none;">
+          Inquiry Form
+        </a>
+      </div>
+
+      <p class="footer-note">
+        Partnerships are by invitation and subject to brand-fit and experience constraints.
+      </p>
+    </section>
+  </div>
+
+  <footer>
+    <p>Questions? Contact us at <a href="mailto:team@aihana.io">team@aihana.io</a></p>
+    <p>© 2025 Aihana, LLC. All rights reserved.</p>
+    <p><a href="/terms.html">Terms of Service</a> | <a href="/privacy.html">Privacy Policy</a></p>
+  </footer>
+</body>
+</html>
