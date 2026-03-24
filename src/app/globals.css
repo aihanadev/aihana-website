@@ -1,0 +1,135 @@
+@import "tailwindcss";
+@import "@fontsource/inter/400.css";
+@import "@fontsource/inter/500.css";
+@import "@fontsource/inter/600.css";
+@import "@fontsource/inter/700.css";
+@import "@fontsource/inter/800.css";
+
+/* ── Aihana Theme Tokens ──────────────────────────────── */
+
+@theme {
+  --color-aihana-midnight: #2A1D4C;
+  --color-aihana-indigo: #4B3F72;
+  --color-aihana-violet: #6B57FF;
+  --color-aihana-lavender: #9b8cff;
+  --color-aihana-lilac: #B4A6FF;
+  --color-aihana-offwhite: #EFEAFF;
+  --color-aihana-deep: #1a0b2e;
+  --color-aihana-void: #120721;
+  --color-aihana-black: #0A0612;
+
+  --font-display: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-poem: 'Georgia', 'Times New Roman', serif;
+
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-float-delayed: float 6s ease-in-out 2s infinite;
+  --animate-glow-pulse: glow-pulse 4s ease-in-out infinite alternate;
+  --animate-drift: drift 28s linear infinite;
+  --animate-bounce-gentle: bounce-gentle 2s ease-in-out infinite;
+  --animate-card-drag-1: card-drag-1 4s ease-in-out infinite;
+  --animate-card-drag-2: card-drag-2 5s ease-in-out infinite;
+  --animate-observe-pulse: observe-pulse 2s ease-out infinite;
+  --animate-confetti-fall: confetti-fall 2.5s ease-out forwards;
+}
+
+/* ── Base ──────────────────────────────────────────────── */
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-aihana-black);
+  color: var(--color-aihana-offwhite);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Keyframes ─────────────────────────────────────────── */
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(2deg); }
+}
+
+@keyframes glow-pulse {
+  from { filter: brightness(1); }
+  to { filter: brightness(1.15); }
+}
+
+@keyframes drift {
+  from { transform: translateX(0); }
+  to { transform: translateX(-40px); }
+}
+
+@keyframes bounce-gentle {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(6px); }
+}
+
+@keyframes card-drag-1 {
+  0%, 100% { transform: translate(0, 0) rotate(-5deg); }
+  30% { transform: translate(40px, -20px) rotate(2deg); }
+  60% { transform: translate(80px, 10px) rotate(-3deg); }
+}
+
+@keyframes card-drag-2 {
+  0%, 100% { transform: translate(0, 0) rotate(8deg); }
+  40% { transform: translate(-30px, 25px) rotate(-4deg); }
+  70% { transform: translate(-60px, -15px) rotate(6deg); }
+}
+
+@keyframes observe-pulse {
+  0% { transform: scale(1); opacity: 0.6; }
+  100% { transform: scale(1.8); opacity: 0; }
+}
+
+@keyframes confetti-fall {
+  0% { transform: translateY(-20px) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(200px) rotate(720deg); opacity: 0; }
+}
+
+@keyframes bar-fill {
+  from { width: 0%; }
+  to { width: var(--bar-width); }
+}
+
+/* ── Utilities ─────────────────────────────────────────── */
+
+@utility scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* ── Noise Texture ─────────────────────────────────────── */
+
+@utility noise-overlay {
+  position: relative;
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    opacity: 0.04;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 256px 256px;
+  }
+}
+
+/* ── Reduced Motion ────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
