@@ -226,20 +226,12 @@ export function HeroSection() {
         </motion.div>
       </motion.div>
 
-      {/* Scroll cue — italic serif, no animated bounce (paper doesn't
-          shimmer). Just a quiet hint. */}
-      <div
-        className="absolute bottom-6 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-2 text-aihana-ink-faint"
-        style={{ fontFamily: 'var(--font-folio)' }}
-      >
-        <div className="w-px h-8 bg-aihana-ink-faint/60" />
-        <span
-          className="italic"
-          style={{ fontSize: '0.7rem', letterSpacing: '0.2em' }}
-        >
-          turn the page
-        </span>
-      </div>
+      {/* Scroll cue intentionally removed — paper folios don't need
+          arrows; readers turn pages by convention. The earlier
+          "turn the page" hint collided with the CTA buttons on
+          shorter viewports (h-svh forces the content tight against
+          the bottom). The hairline ink brackets framing the viewport
+          carry enough page-feel on their own. */}
     </section>
   );
 }
