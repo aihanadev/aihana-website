@@ -37,14 +37,14 @@ export default function LandingPage() {
       <FeatureSection
         label="pillar I · the deck remembers"
         headline="cards that remember."
-        body="Every card in Aihana carries its history. The Ace of Spades that won your last war? It remembers. Play a card today, and three days later, your dealer might recall the moment. This isn't a database — it's a living deck."
+        body="every card in aihana carries its history. the ace of spades that won your last war? it remembers. play a card today, and three days later, your dealer might recall the moment. this isn't a database — it's a living deck."
         technicalNote="memory uptime 99.5% · retrieval latency <150ms · patent pending"
         visual={
           <TippedInPlate
             src="/hanafuda/nov_rainman.png"
             alt="The rain-man card — emblem of memory across sessions"
             eyebrow="plate I · the rain"
-            caption="the deck remembers."
+            caption="the rain returns. the cards return with it."
             attribution="— the dealer"
             tilt={-1.5}
           />
@@ -55,7 +55,7 @@ export default function LandingPage() {
       <FeatureSection
         label="pillar II · the dealer listens"
         headline="a dealer who learns by hand."
-        body="Speak naturally. Aihana's AI dealer understands what you mean, not just what you type. Say 'make 7s wild' during Crazy Eights, and the dealer interprets, validates, and applies — in real time. Teach by playing, not by programming."
+        body="speak naturally. aihana's ai dealer understands what you mean, not just what you type. say 'make sevens wild too' during crazy eights, and the dealer interprets, validates, and applies — in real time. teach by playing, not by programming."
         technicalNote="dual-LLM validation · 5-stage intent classification"
         visual={
           <TippedInPlate
@@ -73,14 +73,14 @@ export default function LandingPage() {
       <FeatureSection
         label="pillar III · the table balances"
         headline="every table plays fair."
-        body="Rule changes require consensus. Win rates are monitored. RNG is auditable. Aihana doesn't just shuffle cards — it ensures the game stays balanced, transparent, and respectful. When someone proposes a house rule, everyone votes."
+        body="rule changes require consensus. win rates are watched. RNG is auditable. aihana doesn't just shuffle cards — it keeps the game balanced, transparent, and respectful. when someone proposes a house rule, everyone votes."
         technicalNote="cryptographic RNG · <70% dominance threshold · real-time fairness index"
         visual={
           <TippedInPlate
             src="/games/full/war.png"
             alt="King of Clubs and Queen of Hearts collide — balance held in motion"
             eyebrow="plate III · the balance"
-            caption="fairness is not enforcement. it is equilibrium maintained in motion."
+            caption="fairness is not enforcement. it is equilibrium in motion."
             attribution="— the table"
             tilt={-0.8}
           />
