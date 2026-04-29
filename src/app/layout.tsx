@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     description: 'Cards that remember. A dealer who learns. Tables that play fair.',
   },
   other: {
-    'theme-color': '#2A1D4C',
+    'theme-color': '#F4ECD3',
   },
 };
 
@@ -32,7 +32,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="bg-aihana-black text-aihana-offwhite antialiased">
+      <body className="bg-aihana-paper text-aihana-ink antialiased">
         {children}
       </body>
     </html>

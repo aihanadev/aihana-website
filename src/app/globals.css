@@ -8,6 +8,23 @@
 /* ── Aihana Theme Tokens ──────────────────────────────── */
 
 @theme {
+  /* Paper folio palette — mirrors mobile theme.v2.folio.* so the
+     website storefront and the app's lobby/splash share vocabulary.
+     The legacy indigo glass tokens below are preserved for surfaces
+     not yet ported (showcase, freeplay, poem, utility pages). */
+  --color-aihana-paper: #F4ECD3;
+  --color-aihana-paper-high: #FAF3DD;
+  --color-aihana-paper-low: #E8DEC0;
+  --color-aihana-ink: #1A1228;
+  --color-aihana-ink-soft: #4A3F5C;
+  --color-aihana-ink-faint: #8C8194;
+  --color-aihana-gilt: #C9A24B;
+  --color-aihana-gilt-deep: #9B7A30;
+  --color-aihana-vermillion: #B43A36;
+  --color-aihana-vermillion-deep: #8A2A26;
+
+  /* Legacy indigo / glass tokens — kept until showcase + utility
+     pages are ported. New surfaces should use paper tokens above. */
   --color-aihana-midnight: #2A1D4C;
   --color-aihana-indigo: #4B3F72;
   --color-aihana-violet: #6B57FF;
@@ -18,6 +35,9 @@
   --color-aihana-void: #120721;
   --color-aihana-black: #0A0612;
 
+  /* Paper folio surfaces use serif for display + body. Inter retained
+     for legacy indigo surfaces still in flight. */
+  --font-folio: 'Times New Roman', Georgia, serif;
   --font-display: 'Inter', system-ui, -apple-system, sans-serif;
   --font-body: 'Inter', system-ui, -apple-system, sans-serif;
   --font-poem: 'Georgia', 'Times New Roman', serif;
@@ -40,8 +60,8 @@ html {
 }
 
 body {
-  background-color: var(--color-aihana-black);
-  color: var(--color-aihana-offwhite);
+  background-color: var(--color-aihana-paper);
+  color: var(--color-aihana-ink);
   font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -122,6 +142,36 @@ body {
     background-repeat: repeat;
     background-size: 256px 256px;
   }
+}
+
+/* ── Paper Grain ─────────────────────────────────────────
+   Subtle ink-on-paper texture for folio surfaces. Lower-frequency
+   noise than the indigo-era noise-overlay; the goal is "aged
+   parchment fiber," not "TV static." Mirror of the React Native
+   PaperGrain primitive used in mobile LobbyPaper. */
+@utility paper-grain {
+  position: relative;
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    opacity: 0.06;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.6' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.10 0 0 0 0 0.07 0 0 0 0 0.16 0 0 0 0.6 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23p)'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 200px 200px;
+  }
+}
+
+/* Hairline ink rule — mimics the React Native StyleSheet.hairlineWidth
+   rules in LobbyPaper / WelcomeSplash. Use as a divider between
+   masthead, whisper, TOC, and feature blocks. */
+@utility hairline-rule {
+  height: 1px;
+  background-color: var(--color-aihana-ink-faint);
+  opacity: 0.45;
 }
 
 /* ── Reduced Motion ────────────────────────────────────── */

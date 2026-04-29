@@ -1,89 +1,161 @@
 'use client';
 
+// Paper-folio DownloadCTA — replaces the radial-violet-glow CTA with
+// a folio-page closing rhythm. Hairline rule above, italic eyebrow,
+// serif headline, vermillion ribbon CTAs, gilt italic colophon line
+// at the bottom. The voice is "the table is open" — invitational,
+// not "Play Your Way" / SaaS-imperative.
+
 import { AnimatedOnScroll } from '@/components/shared/AnimatedOnScroll';
 import { URLS } from '@/lib/constants';
 
 export function DownloadCTA() {
   return (
-    <section className="relative py-24 md:py-32 overflow-hidden">
-      {/* Radial violet glow */}
-      <div
-        className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full pointer-events-none animate-glow-pulse"
-        style={{
-          background: 'radial-gradient(circle, rgba(107,87,255,0.1) 0%, transparent 60%)',
-        }}
-      />
+    <section className="relative py-24 md:py-32 paper-grain bg-aihana-paper overflow-hidden">
+      {/* Hairline ink bracket — top */}
+      <div className="max-w-6xl mx-auto px-6">
+        <div className="hairline-rule mb-16" />
+      </div>
 
-      <div className="relative z-10 max-w-lg mx-auto px-6 text-center">
+      <div className="relative z-10 max-w-xl mx-auto px-6 text-center">
+        {/* Eyebrow — italic uppercase serif. */}
         <AnimatedOnScroll>
-          <h2
-            className="font-bold text-white mb-4"
+          <span
+            className="text-aihana-ink-faint uppercase block mb-5"
             style={{
-              fontSize: 'clamp(2.25rem, 5vw, 3.5rem)',
-              fontFamily: 'var(--font-display)',
+              fontFamily: 'var(--font-folio)',
+              fontSize: '0.7rem',
+              letterSpacing: '0.3em',
+              fontWeight: 600,
             }}
           >
-            Play Your Way
+            the table is open
+          </span>
+        </AnimatedOnScroll>
+
+        {/* Headline — serif italic, the dealer's invitation. */}
+        <AnimatedOnScroll delay={0.05}>
+          <h2
+            className="text-aihana-ink mb-5"
+            style={{
+              fontSize: 'clamp(2.25rem, 5vw, 3.4rem)',
+              fontFamily: 'var(--font-folio)',
+              fontWeight: 400,
+              fontStyle: 'italic',
+              lineHeight: 1.2,
+              letterSpacing: '0.005em',
+            }}
+          >
+            find your seat.
           </h2>
         </AnimatedOnScroll>
 
         <AnimatedOnScroll delay={0.1}>
-          <p className="text-aihana-offwhite mb-8">
-            Available on iOS and Android. Download now and find your table.
+          <p
+            className="text-aihana-ink-soft mb-10 max-w-md mx-auto"
+            style={{
+              fontFamily: 'var(--font-folio)',
+              fontSize: '1.05rem',
+              lineHeight: 1.7,
+            }}
+          >
+            available on iOS and Android. eight games to begin with — more in the folio as the dealer learns your hand.
           </p>
         </AnimatedOnScroll>
 
-        <AnimatedOnScroll delay={0.2}>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+        {/* Vermillion ribbon CTAs — primary download buttons. */}
+        <AnimatedOnScroll delay={0.18}>
+          <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
             <a
               href={URLS.appStore}
               target="_blank"
               rel="noopener noreferrer"
-              className="px-8 py-3.5 rounded-2xl font-semibold text-white
-                bg-gradient-to-r from-aihana-violet to-aihana-lavender
-                shadow-[0_8px_30px_rgba(107,87,255,0.4)]
-                hover:shadow-[0_12px_40px_rgba(107,87,255,0.6)] hover:-translate-y-0.5 hover:scale-[1.02]
-                transition-all duration-200"
+              className="px-8 py-3 uppercase
+                bg-aihana-vermillion text-aihana-paper-high
+                border border-aihana-vermillion-deep
+                hover:bg-aihana-vermillion-deep
+                transition-colors duration-200"
+              style={{
+                fontFamily: 'var(--font-folio)',
+                letterSpacing: '0.18em',
+                fontSize: '0.78rem',
+                fontWeight: 500,
+                borderRadius: 2,
+              }}
             >
-              Download for iOS
+              download for iOS
             </a>
             <a
               href={URLS.googlePlay}
               target="_blank"
               rel="noopener noreferrer"
-              className="px-8 py-3.5 rounded-2xl font-semibold text-white
-                bg-gradient-to-r from-aihana-violet to-aihana-lavender
-                shadow-[0_8px_30px_rgba(107,87,255,0.4)]
-                hover:shadow-[0_12px_40px_rgba(107,87,255,0.6)] hover:-translate-y-0.5 hover:scale-[1.02]
-                transition-all duration-200"
+              className="px-8 py-3 uppercase
+                bg-aihana-vermillion text-aihana-paper-high
+                border border-aihana-vermillion-deep
+                hover:bg-aihana-vermillion-deep
+                transition-colors duration-200"
+              style={{
+                fontFamily: 'var(--font-folio)',
+                letterSpacing: '0.18em',
+                fontSize: '0.78rem',
+                fontWeight: 500,
+                borderRadius: 2,
+              }}
             >
-              Download for Android
+              download for android
             </a>
           </div>
         </AnimatedOnScroll>
 
-        <AnimatedOnScroll delay={0.3}>
-          <div className="mt-10">
-            <p className="text-sm text-aihana-lilac mb-4">
-              Or get notified when new games launch:
+        {/* Secondary affordance — italic invitation, ink-ghost button. */}
+        <AnimatedOnScroll delay={0.28}>
+          <div className="mt-12">
+            <p
+              className="italic text-aihana-ink-faint mb-4"
+              style={{ fontFamily: 'var(--font-folio)', fontSize: '0.95rem' }}
+            >
+              or be notified when new games arrive in the folio:
             </p>
             <a
               href={URLS.notifyForm}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block px-6 py-3 rounded-2xl text-sm font-semibold text-aihana-violet
-                border border-aihana-violet/40
-                hover:bg-aihana-violet/10 hover:border-aihana-violet/60
-                transition-all duration-300"
+              className="inline-block px-7 py-2.5 uppercase
+                text-aihana-ink
+                border border-aihana-ink/40
+                hover:bg-aihana-ink/5 hover:border-aihana-ink/70
+                transition-colors duration-200"
+              style={{
+                fontFamily: 'var(--font-folio)',
+                letterSpacing: '0.18em',
+                fontSize: '0.7rem',
+                fontWeight: 500,
+                borderRadius: 2,
+              }}
             >
-              Get Notified
+              be notified
             </a>
           </div>
         </AnimatedOnScroll>
 
-        <p className="text-aihana-lilac/40 text-xs mt-10">
-          Free to download. No ads. No interruptions.
+        {/* Colophon line — gilt italic, low alpha. The folio's
+            footnote register. */}
+        <p
+          className="italic mt-12"
+          style={{
+            fontFamily: 'var(--font-folio)',
+            fontSize: '0.78rem',
+            color: 'var(--color-aihana-gilt-deep)',
+            letterSpacing: '0.04em',
+          }}
+        >
+          free to download · no ads · no interruptions
         </p>
+      </div>
+
+      {/* Hairline ink bracket — bottom */}
+      <div className="max-w-6xl mx-auto px-6 mt-16">
+        <div className="hairline-rule" />
       </div>
     </section>
   );
