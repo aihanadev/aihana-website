@@ -7,84 +7,202 @@ export const metadata = {
   description: 'Brand-hosted play experiences on Aihana. Not advertising.',
 };
 
+const FOLIO_FONT = 'var(--font-folio)';
+
 export default function PartnershipsPage() {
   return (
     <main>
       <Navbar />
-      <div className="max-w-2xl mx-auto px-6 pt-32 pb-20">
-        <header className="text-center mb-16">
-          <h1
-            className="text-white font-semibold mb-3"
-            style={{ fontSize: 'clamp(2.25rem, 4vw, 3rem)', fontFamily: 'var(--font-display)' }}
+      <div className="bg-aihana-paper paper-grain min-h-screen">
+        <div className="max-w-2xl mx-auto px-6 pt-32 pb-24">
+          {/* Eyebrow + headline */}
+          <header className="text-center mb-14">
+            <span
+              className="text-aihana-ink-faint uppercase block mb-4"
+              style={{
+                fontFamily: FOLIO_FONT,
+                fontSize: '0.7rem',
+                letterSpacing: '0.3em',
+                fontWeight: 600,
+              }}
+            >
+              the folio · partnerships
+            </span>
+            <h1
+              className="text-aihana-ink mb-4"
+              style={{
+                fontFamily: FOLIO_FONT,
+                fontWeight: 400,
+                fontStyle: 'italic',
+                fontSize: 'clamp(2.25rem, 4vw, 3rem)',
+                letterSpacing: '0.005em',
+              }}
+            >
+              brand-hosted play.
+            </h1>
+            <p
+              className="text-aihana-ink-soft italic"
+              style={{ fontFamily: FOLIO_FONT, fontSize: '1.05rem' }}
+            >
+              not advertising.
+            </p>
+          </header>
+
+          <div className="hairline-rule mb-12" />
+
+          <p
+            className="text-aihana-ink-soft mb-4"
+            style={{ fontFamily: FOLIO_FONT, fontSize: '1.05rem', lineHeight: 1.75 }}
           >
-            Partnerships
-          </h1>
-          <p className="text-aihana-lilac/70 text-lg">Brand-hosted play, not advertising.</p>
-        </header>
-
-        <p className="text-aihana-offwhite leading-[1.7] mb-4 text-lg">
-          Aihana is a premium social card platform where play feels human, calm, and remembered.
-          We invite a small number of brands to explore brand-hosted play experiences that align
-          with trust, shared moments, and intentional social rituals.
-        </p>
-        <p className="text-aihana-lilac/60 italic mb-12">This is not an ad network.</p>
-
-        <div className="h-px w-full bg-aihana-indigo/20 mb-12" />
-
-        <section className="mb-10">
-          <h2 className="text-white font-semibold text-lg mb-4">What this is</h2>
-          <ul className="space-y-2 text-aihana-offwhite/85">
-            <li>Hosted tables or decks that persist across sessions</li>
-            <li>Ritual moments at session start or event kickoff</li>
-            <li>Opt-in experiences players choose to join</li>
-          </ul>
-          <p className="text-aihana-lilac/60 italic text-sm mt-3">Think: hosting a game night — not buying impressions.</p>
-        </section>
-
-        <section className="mb-10">
-          <h2 className="text-white font-semibold text-lg mb-4">What this is not</h2>
-          <ul className="space-y-2 text-aihana-offwhite/85">
-            <li>No interstitials or rewarded ads</li>
-            <li>No behavioral targeting</li>
-            <li>No CPM buying or performance optimization</li>
-            <li>No infinite inventory</li>
-          </ul>
-          <p className="text-aihana-lilac/60 italic text-sm mt-3">If it interrupts play, we don&apos;t ship it.</p>
-        </section>
-
-        <section className="mb-12">
-          <h2 className="text-white font-semibold text-lg mb-4">How we work</h2>
-          <ul className="space-y-2 text-aihana-offwhite/85">
-            <li>Selective, founder-led discovery</li>
-            <li>Small pilots designed to learn, not scale</li>
-            <li>Hard caps and scarcity by design</li>
-          </ul>
-          <p className="text-aihana-lilac/60 italic text-sm mt-3">We prioritize trust and long-term association over reach.</p>
-        </section>
-
-        <div className="h-px w-full bg-aihana-indigo/20 mb-12" />
-
-        <div className="text-center">
-          <h2 className="text-white font-semibold text-xl mb-2">Partnerships</h2>
-          <p className="text-aihana-lilac/70 text-sm mb-6">
-            We work with a small number of brands at a time.<br />
-            Responses are reviewed by the founder and are not guaranteed.
+            Aihana is a premium social card platform where play feels human, calm, and remembered.
+            We invite a small number of brands to explore brand-hosted play experiences that align
+            with trust, shared moments, and intentional social rituals.
           </p>
-          <a
-            href={URLS.partnershipsForm}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-block px-8 py-3 rounded-xl font-semibold text-white
-              bg-aihana-violet hover:bg-aihana-violet/90 transition-colors"
+          <p
+            className="text-aihana-ink-faint italic mb-12"
+            style={{ fontFamily: FOLIO_FONT, fontSize: '0.95rem' }}
           >
-            Inquiry Form
-          </a>
-          <p className="text-aihana-lilac/40 text-xs mt-6">
-            Partnerships are by invitation and subject to brand-fit and experience constraints.
+            this is not an ad network.
           </p>
+
+          <div className="hairline-rule mb-12" />
+
+          <PartSection
+            label="what this is"
+            footnote="think: hosting a game night — not buying impressions."
+            items={[
+              'Hosted tables or decks that persist across sessions',
+              'Ritual moments at session start or event kickoff',
+              'Opt-in experiences players choose to join',
+            ]}
+          />
+
+          <PartSection
+            label="what this is not"
+            footnote="if it interrupts play, we don't ship it."
+            items={[
+              'No interstitials or rewarded ads',
+              'No behavioral targeting',
+              'No CPM buying or performance optimization',
+              'No infinite inventory',
+            ]}
+          />
+
+          <PartSection
+            label="how we work"
+            footnote="we prioritize trust and long-term association over reach."
+            items={[
+              'Selective, founder-led discovery',
+              'Small pilots designed to learn, not scale',
+              'Hard caps and scarcity by design',
+            ]}
+          />
+
+          <div className="hairline-rule mb-12" />
+
+          {/* Inquiry CTA — vermillion ribbon. */}
+          <div className="text-center">
+            <span
+              className="text-aihana-ink-faint uppercase block mb-3"
+              style={{
+                fontFamily: FOLIO_FONT,
+                fontSize: '0.7rem',
+                letterSpacing: '0.3em',
+                fontWeight: 600,
+              }}
+            >
+              partnerships
+            </span>
+            <p
+              className="text-aihana-ink-soft mb-7"
+              style={{ fontFamily: FOLIO_FONT, fontSize: '1rem', lineHeight: 1.65 }}
+            >
+              We work with a small number of brands at a time.<br />
+              Responses are reviewed by the founder and are not guaranteed.
+            </p>
+            <a
+              href={URLS.partnershipsForm}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block px-8 py-3 uppercase
+                bg-aihana-vermillion text-aihana-paper-high
+                border border-aihana-vermillion-deep
+                hover:bg-aihana-vermillion-deep
+                transition-colors duration-200"
+              style={{
+                fontFamily: FOLIO_FONT,
+                letterSpacing: '0.18em',
+                fontSize: '0.78rem',
+                fontWeight: 500,
+                borderRadius: 2,
+              }}
+            >
+              inquiry form
+            </a>
+            <p
+              className="italic mt-7"
+              style={{
+                fontFamily: FOLIO_FONT,
+                fontSize: '0.78rem',
+                color: 'var(--color-aihana-gilt-deep)',
+                letterSpacing: '0.02em',
+              }}
+            >
+              partnerships are by invitation and subject to brand-fit and experience constraints.
+            </p>
+          </div>
         </div>
       </div>
       <Footer />
     </main>
+  );
+}
+
+// ── Section sub-component ─────────────────────────────────
+
+function PartSection({
+  label,
+  items,
+  footnote,
+}: {
+  label: string;
+  items: string[];
+  footnote?: string;
+}) {
+  return (
+    <section className="mb-12">
+      <h2
+        className="text-aihana-ink-faint uppercase mb-5"
+        style={{
+          fontFamily: FOLIO_FONT,
+          fontSize: '0.7rem',
+          letterSpacing: '0.3em',
+          fontWeight: 600,
+        }}
+      >
+        {label}
+      </h2>
+      <ul
+        className="space-y-2 text-aihana-ink-soft"
+        style={{ fontFamily: FOLIO_FONT, fontSize: '1.02rem', lineHeight: 1.7 }}
+      >
+        {items.map((item) => (
+          <li key={item}>{item}</li>
+        ))}
+      </ul>
+      {footnote && (
+        <p
+          className="italic mt-4"
+          style={{
+            fontFamily: FOLIO_FONT,
+            fontSize: '0.85rem',
+            color: 'var(--color-aihana-gilt-deep)',
+            letterSpacing: '0.02em',
+          }}
+        >
+          {footnote}
+        </p>
+      )}
+    </section>
   );
 }

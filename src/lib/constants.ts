@@ -13,85 +13,113 @@ export interface GameInfo {
   id: string;
   name: string;
   icon: string;
+  // Path to the game's tipped-in art under /public. Where the app
+  // ships dedicated commissioned art (hearts/war/go_fish/crazy_eights/
+  // gin_rummy/free_play), use /games/full/. Where the app uses a
+  // hanafuda card (Koi-Koi: jan_crane; Big 2: dec_phoenix until
+  // dedicated art arrives), use /hanafuda/. holdem has no art yet
+  // (coming-soon).
+  art?: string;
   playerCount: string;
   difficulty: 'Easy' | 'Medium' | 'Hard';
   description: string;
-  glowColor: string;
+  // Roman numeral for the folio TOC ordering — matches the app
+  // lobby's TOC (commit 868d155 reorder: Koi-Koi I, War II, CE III,
+  // Go Fish IV, Gin Rummy V, Big 2 VI, Hearts VII, Free Play VIII /
+  // here we omit Free Play since it's the sandbox grammar position).
+  numeral: string;
   comingSoon?: boolean;
 }
 
 export const GAMES: GameInfo[] = [
   {
-    id: 'hearts',
-    name: 'Hearts',
-    icon: '♥️',
-    playerCount: '4 Players',
+    id: 'koikoi',
+    name: 'Koi-Koi 花札',
+    icon: '🎴',
+    art: '/hanafuda/jan_crane.png',
+    playerCount: 'two players',
     difficulty: 'Medium',
-    description: 'Classic trick-taking strategy',
-    glowColor: 'rgba(239, 68, 68, 0.3)',
+    description: 'japanese flower-card matching · twelve months, twelve flowers.',
+    numeral: 'I',
   },
   {
     id: 'war',
     name: 'War',
     icon: '⚔️',
-    playerCount: '2–6 Players',
+    art: '/games/full/war.png',
+    playerCount: 'head-to-head',
     difficulty: 'Easy',
-    description: 'Highest card wins the battle',
-    glowColor: 'rgba(245, 158, 11, 0.3)',
-  },
-  {
-    id: 'gofish',
-    name: 'Go Fish',
-    icon: '🎣',
-    playerCount: '2–6 Players',
-    difficulty: 'Easy',
-    description: 'Ask, collect, remember',
-    glowColor: 'rgba(59, 130, 246, 0.3)',
+    description: 'highest card takes the trick · brisk and unforgiving.',
+    numeral: 'II',
   },
   {
     id: 'crazy-eights',
     name: 'Crazy Eights',
     icon: '8️⃣',
-    playerCount: '2–7 Players',
+    art: '/games/full/crazy_eights.png',
+    playerCount: 'two to seven',
     difficulty: 'Easy',
-    description: 'Match the suit or rank',
-    glowColor: 'rgba(34, 197, 94, 0.3)',
+    description: 'match the suit or rank · eights are wild · teach the dealer.',
+    numeral: 'III',
   },
   {
-    id: 'koikoi',
-    name: 'Koi-Koi 花札',
-    icon: '🎴',
-    playerCount: '2 Players',
-    difficulty: 'Medium',
-    description: 'Japanese flower card matching',
-    glowColor: 'rgba(236, 72, 153, 0.3)',
+    id: 'gofish',
+    name: 'Go Fish',
+    icon: '🎣',
+    art: '/games/full/go_fish.png',
+    playerCount: 'two to six',
+    difficulty: 'Easy',
+    description: 'ask, collect, remember · the simplest hand in the folio.',
+    numeral: 'IV',
   },
   {
     id: 'ginrummy',
     name: 'Gin Rummy',
     icon: '🃏',
-    playerCount: '2–4 Players',
+    art: '/games/full/gin_rummy.png',
+    playerCount: 'two to four',
     difficulty: 'Medium',
-    description: 'Draw, meld, and knock',
-    glowColor: 'rgba(234, 179, 8, 0.3)',
+    description: 'draw, meld, knock · the patient hand wins.',
+    numeral: 'V',
   },
   {
     id: 'big2',
-    name: 'Big2 大老二',
+    name: 'Big 2 大老二',
     icon: '🎯',
-    playerCount: '4 Players',
+    art: '/hanafuda/dec_phoenix.png',
+    playerCount: 'four players',
     difficulty: 'Hard',
-    description: 'Chinese climbing poker',
-    glowColor: 'rgba(234, 179, 8, 0.3)',
+    description: 'cascading combinations · climb out of the deal.',
+    numeral: 'VI',
+  },
+  {
+    id: 'hearts',
+    name: 'Hearts',
+    icon: '♥️',
+    art: '/games/full/hearts.png',
+    playerCount: 'four players',
+    difficulty: 'Medium',
+    description: 'avoid the points · the black lady waits.',
+    numeral: 'VII',
+  },
+  {
+    id: 'sandbox',
+    name: 'Free Play',
+    icon: '🃏',
+    art: '/games/full/free_play.png',
+    playerCount: 'open canvas',
+    difficulty: 'Easy',
+    description: 'no rules · just cards · together.',
+    numeral: 'VIII',
   },
   {
     id: 'holdem',
     name: "Texas Hold'em",
     icon: '🃏',
-    playerCount: '2–10 Players',
+    playerCount: 'two to ten',
     difficulty: 'Hard',
-    description: "The world's most popular poker",
-    glowColor: 'rgba(16, 185, 129, 0.3)',
+    description: "the world's most-played poker · arriving in the next folio.",
+    numeral: '—',
     comingSoon: true,
   },
 ];

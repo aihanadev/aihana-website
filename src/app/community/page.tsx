@@ -7,61 +7,123 @@ export const metadata = {
   description: 'Join the Aihana community. Share custom card game rules and connect with players.',
 };
 
+const FOLIO_FONT = 'var(--font-folio)';
+
+const COMMUNITY_CARDS = [
+  {
+    title: 'submit your game',
+    desc: 'share your custom card-game rules with the community.',
+    href: `${URLS.reddit}submit`,
+    label: 'create post',
+  },
+  {
+    title: 'join discussions',
+    desc: 'read what others are saying and join in.',
+    href: URLS.reddit,
+    label: 'browse community',
+  },
+  {
+    title: 'latest rules',
+    desc: 'check out the newest rule submissions.',
+    href: `${URLS.reddit}new`,
+    label: 'view recent',
+  },
+];
+
 export default function CommunityPage() {
   return (
     <main>
       <Navbar />
-      <div className="max-w-4xl mx-auto px-6 pt-32 pb-20">
-        <header className="text-center mb-12">
-          <h1
-            className="text-white font-bold mb-3"
-            style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', fontFamily: 'var(--font-display)' }}
-          >
-            Community
-          </h1>
-          <p className="text-aihana-lilac text-lg">Submit your custom card game rules. Our Dealer is listening.</p>
-        </header>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {[
-            {
-              title: 'Submit Your Game',
-              desc: 'Share your custom card game rules with the community',
-              href: `${URLS.reddit}submit`,
-              label: 'Create Post',
-            },
-            {
-              title: 'Join Discussions',
-              desc: 'Read what others are saying and participate',
-              href: URLS.reddit,
-              label: 'Browse Community',
-            },
-            {
-              title: 'Latest Rules',
-              desc: 'Check out the newest rule submissions',
-              href: `${URLS.reddit}new`,
-              label: 'View Recent',
-            },
-          ].map((card) => (
-            <div
-              key={card.title}
-              className="rounded-2xl border border-aihana-indigo/30 p-6 text-center
-                bg-aihana-midnight/30 hover:-translate-y-1 transition-all duration-300
-                hover:border-aihana-violet/40 hover:shadow-[0_8px_24px_rgba(107,87,255,0.15)]"
+      <div className="bg-aihana-paper paper-grain min-h-screen">
+        <div className="max-w-4xl mx-auto px-6 pt-32 pb-24">
+          {/* Header */}
+          <header className="text-center mb-14">
+            <span
+              className="text-aihana-ink-faint uppercase block mb-4"
+              style={{
+                fontFamily: FOLIO_FONT,
+                fontSize: '0.7rem',
+                letterSpacing: '0.3em',
+                fontWeight: 600,
+              }}
             >
-              <h3 className="text-aihana-offwhite font-semibold text-lg mb-2">{card.title}</h3>
-              <p className="text-aihana-lilac/70 text-sm mb-5">{card.desc}</p>
-              <a
-                href={card.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block px-5 py-2.5 rounded-xl text-sm font-semibold text-white
-                  bg-aihana-violet hover:bg-aihana-violet/90 transition-colors"
+              the folio · community
+            </span>
+            <h1
+              className="text-aihana-ink mb-4"
+              style={{
+                fontFamily: FOLIO_FONT,
+                fontWeight: 400,
+                fontStyle: 'italic',
+                fontSize: 'clamp(2.25rem, 4vw, 3rem)',
+                letterSpacing: '0.005em',
+              }}
+            >
+              the dealer is listening.
+            </h1>
+            <p
+              className="text-aihana-ink-soft italic"
+              style={{ fontFamily: FOLIO_FONT, fontSize: '1.05rem' }}
+            >
+              submit your custom card-game rules. join the table.
+            </p>
+          </header>
+
+          <div className="hairline-rule mb-14" />
+
+          {/* Three plates — paper cards with vermillion CTA. */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {COMMUNITY_CARDS.map((card) => (
+              <div
+                key={card.title}
+                className="bg-aihana-paper-high p-6 text-center
+                  border border-aihana-ink/20
+                  hover:-translate-y-1 hover:border-aihana-ink/40
+                  transition-all duration-300"
+                style={{
+                  borderRadius: 4,
+                  boxShadow: '0 4px 14px rgba(26,18,40,0.08)',
+                }}
               >
-                {card.label} &rarr;
-              </a>
-            </div>
-          ))}
+                <h3
+                  className="text-aihana-ink mb-3"
+                  style={{
+                    fontFamily: FOLIO_FONT,
+                    fontWeight: 400,
+                    fontStyle: 'italic',
+                    fontSize: '1.2rem',
+                  }}
+                >
+                  {card.title}
+                </h3>
+                <p
+                  className="text-aihana-ink-soft mb-6"
+                  style={{ fontFamily: FOLIO_FONT, fontSize: '0.95rem', lineHeight: 1.6 }}
+                >
+                  {card.desc}
+                </p>
+                <a
+                  href={card.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block px-5 py-2 uppercase
+                    bg-aihana-vermillion text-aihana-paper-high
+                    border border-aihana-vermillion-deep
+                    hover:bg-aihana-vermillion-deep
+                    transition-colors duration-200"
+                  style={{
+                    fontFamily: FOLIO_FONT,
+                    letterSpacing: '0.18em',
+                    fontSize: '0.7rem',
+                    fontWeight: 500,
+                    borderRadius: 2,
+                  }}
+                >
+                  {card.label}
+                </a>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
       <Footer />

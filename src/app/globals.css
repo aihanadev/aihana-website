@@ -4,14 +4,26 @@
 @import "@fontsource/inter/600.css";
 @import "@fontsource/inter/700.css";
 @import "@fontsource/inter/800.css";
+/* Spectral — paper-folio display + body serif. Designed for digital
+   reading with multiple weights; sharpens the wordmark on Windows /
+   Linux where Times New Roman renders thin. */
+@import "@fontsource/spectral/400.css";
+@import "@fontsource/spectral/400-italic.css";
+@import "@fontsource/spectral/500.css";
+@import "@fontsource/spectral/500-italic.css";
+@import "@fontsource/spectral/600.css";
+@import "@fontsource/spectral/600-italic.css";
 
 /* ── Aihana Theme Tokens ──────────────────────────────── */
 
 @theme {
   /* Paper folio palette — mirrors mobile theme.v2.folio.* so the
      website storefront and the app's lobby/splash share vocabulary.
-     The legacy indigo glass tokens below are preserved for surfaces
-     not yet ported (showcase, freeplay, poem, utility pages). */
+     The full site now ships on paper; legacy indigo tokens have been
+     retired (commit 1a5c641 paper-folio refactor + the orphan-cleanup
+     follow-up that retired LivingDeckVisual / TeachableAIVisual /
+     FairnessVisual / FloatingCards / GradientDivider / GlowText /
+     PlayFreelyVisual et al.). */
   --color-aihana-paper: #F4ECD3;
   --color-aihana-paper-high: #FAF3DD;
   --color-aihana-paper-low: #E8DEC0;
@@ -23,24 +35,12 @@
   --color-aihana-vermillion: #B43A36;
   --color-aihana-vermillion-deep: #8A2A26;
 
-  /* Legacy indigo / glass tokens — kept until showcase + utility
-     pages are ported. New surfaces should use paper tokens above. */
-  --color-aihana-midnight: #2A1D4C;
-  --color-aihana-indigo: #4B3F72;
-  --color-aihana-violet: #6B57FF;
-  --color-aihana-lavender: #9b8cff;
-  --color-aihana-lilac: #B4A6FF;
-  --color-aihana-offwhite: #EFEAFF;
-  --color-aihana-deep: #1a0b2e;
-  --color-aihana-void: #120721;
-  --color-aihana-black: #0A0612;
-
-  /* Paper folio surfaces use serif for display + body. Inter retained
-     for legacy indigo surfaces still in flight. */
-  --font-folio: 'Times New Roman', Georgia, serif;
-  --font-display: 'Inter', system-ui, -apple-system, sans-serif;
-  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
-  --font-poem: 'Georgia', 'Times New Roman', serif;
+  /* Spectral for display + body on folio surfaces. Inter retained as
+     a fallback for any system surface that still wants sans-serif. */
+  --font-folio: 'Spectral', 'Times New Roman', Georgia, serif;
+  --font-display: 'Spectral', 'Times New Roman', Georgia, serif;
+  --font-body: 'Spectral', Georgia, serif;
+  --font-poem: 'Spectral', Georgia, 'Times New Roman', serif;
 
   --animate-float: float 6s ease-in-out infinite;
   --animate-float-delayed: float 6s ease-in-out 2s infinite;

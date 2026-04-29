@@ -10,6 +10,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@fontsource/spectral": "^5.2.8",
     "framer-motion": "^12.38.0",
     "next": "^16.2.1",
     "react": "^19.2.4",
