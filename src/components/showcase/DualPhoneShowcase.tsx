@@ -12,13 +12,8 @@ export function DualPhoneShowcase() {
   return (
     <section
       id="showcase"
-      className="relative py-24 md:py-32 paper-grain bg-aihana-paper overflow-hidden"
+      className="relative py-24 md:py-32 overflow-hidden"
     >
-      {/* Hairline ink bracket — top */}
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="hairline-rule mb-16 md:mb-20" />
-      </div>
-
       <div className="max-w-7xl mx-auto px-6">
         {/* Header */}
         <div className="text-center mb-16">
@@ -104,10 +99,6 @@ export function DualPhoneShowcase() {
         </AnimatedOnScroll>
       </div>
 
-      {/* Hairline ink bracket — bottom */}
-      <div className="max-w-7xl mx-auto px-6 mt-16 md:mt-20">
-        <div className="hairline-rule" />
-      </div>
     </section>
   );
 }

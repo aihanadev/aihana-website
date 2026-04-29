@@ -13,7 +13,7 @@ export default function PartnershipsPage() {
   return (
     <main>
       <Navbar />
-      <div className="bg-aihana-paper paper-grain min-h-screen">
+      <div className="min-h-screen">
         <div className="max-w-2xl mx-auto px-6 pt-32 pb-24">
           {/* Eyebrow + headline */}
           <header className="text-center mb-14">

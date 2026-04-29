@@ -22,12 +22,7 @@ export function FeatureSection({ label, headline, body, technicalNote, visual, l
   const isLeft = layout === 'visual-left';
 
   return (
-    <section className="relative py-20 md:py-28 paper-grain bg-aihana-paper">
-      {/* Hairline bracket — top */}
-      <div className="max-w-6xl mx-auto px-6">
-        <div className="hairline-rule mb-16 md:mb-20" />
-      </div>
-
+    <section className="relative py-20 md:py-28">
       <div className="max-w-6xl mx-auto px-6">
         <div className={`flex flex-col ${isLeft ? 'lg:flex-row' : 'lg:flex-row-reverse'} items-center gap-12 lg:gap-20`}>
           {/* Visual side — tipped-in plate */}
@@ -40,7 +35,7 @@ export function FeatureSection({ label, headline, body, technicalNote, visual, l
             {visual}
           </AnimatedOnScroll>
 
-          {/* Text side */}
+          {/* Text side — body column + scholar's right-margin note. */}
           <AnimatedOnScroll
             animation={isLeft ? 'slideFromRight' : 'slideFromLeft'}
             delay={0.1}
@@ -48,70 +43,78 @@ export function FeatureSection({ label, headline, body, technicalNote, visual, l
             easing={[0.22, 1, 0.36, 1]}
             className="flex-1"
           >
-            {/* Eyebrow — small uppercase, ink-faint, wide tracking.
-                Mirrors LobbyPaper folioLabel + tocHeadCount. */}
-            <span
-              className="text-aihana-ink-faint uppercase"
-              style={{
-                fontFamily: 'var(--font-folio)',
-                fontSize: '0.7rem',
-                letterSpacing: '0.3em',
-                fontWeight: 600,
-              }}
-            >
-              {label}
-            </span>
+            <div className="flex flex-col lg:flex-row gap-8 lg:gap-10">
+              {/* Body column */}
+              <div className="flex-1">
+                {/* Eyebrow — small uppercase, ink-faint, wide tracking.
+                    Mirrors LobbyPaper folioLabel + tocHeadCount. */}
+                <span
+                  className="text-aihana-ink-faint uppercase"
+                  style={{
+                    fontFamily: 'var(--font-folio)',
+                    fontSize: '0.7rem',
+                    letterSpacing: '0.3em',
+                    fontWeight: 600,
+                  }}
+                >
+                  {label}
+                </span>
 
-            {/* Headline — serif italic, 400 weight. The rhetoric of
-                a chapter title, not a SaaS landing-page H2. */}
-            <h2
-              className="mt-4 mb-5 text-aihana-ink"
-              style={{
-                fontSize: 'clamp(1.85rem, 3.6vw, 2.6rem)',
-                fontFamily: 'var(--font-folio)',
-                fontWeight: 400,
-                fontStyle: 'italic',
-                lineHeight: 1.18,
-                letterSpacing: '0.005em',
-              }}
-            >
-              {headline}
-            </h2>
+                {/* Headline — serif italic, 400 weight. The rhetoric
+                    of a chapter title, not a SaaS landing-page H2. */}
+                <h2
+                  className="mt-4 mb-5 text-aihana-ink"
+                  style={{
+                    fontSize: 'clamp(1.85rem, 3.6vw, 2.6rem)',
+                    fontFamily: 'var(--font-folio)',
+                    fontWeight: 400,
+                    fontStyle: 'italic',
+                    lineHeight: 1.18,
+                    letterSpacing: '0.005em',
+                  }}
+                >
+                  {headline}
+                </h2>
 
-            {/* Body — paper-readable serif, ink-soft for warmth. */}
-            <p
-              className="text-aihana-ink-soft mb-6 max-w-lg"
-              style={{
-                fontFamily: 'var(--font-folio)',
-                fontSize: '1.05rem',
-                lineHeight: 1.75,
-              }}
-            >
-              {body}
-            </p>
+                {/* Body — paper-readable serif, ink-soft for warmth. */}
+                <p
+                  className="text-aihana-ink-soft max-w-lg"
+                  style={{
+                    fontFamily: 'var(--font-folio)',
+                    fontSize: '1.05rem',
+                    lineHeight: 1.75,
+                  }}
+                >
+                  {body}
+                </p>
+              </div>
 
-            {/* Technical note — gilt-toned italic, smaller, tracked.
-                The folio's footnote register. */}
-            <p
-              className="italic"
-              style={{
-                fontFamily: 'var(--font-folio)',
-                fontSize: '0.78rem',
-                lineHeight: 1.6,
-                color: 'var(--color-aihana-gilt-deep)',
-                letterSpacing: '0.02em',
-              }}
-            >
-              {technicalNote}
-            </p>
+              {/* Scholar's margin note — right-margin annotation on
+                  desktop (vertical strip with gilt italic stat list,
+                  separated by a hairline ink stroke on its left like
+                  a real margin-gloss line). On mobile, stacks below
+                  the body without the left stroke. Reviewer note:
+                  "trust signals in the margin as scholarly notes,
+                  not centered SaaS-stat callouts." */}
+              <aside
+                className="lg:w-40 lg:pl-5 lg:border-l lg:border-aihana-ink/15
+                  pt-2 lg:pt-1
+                  italic"
+                style={{
+                  fontFamily: 'var(--font-folio)',
+                  fontSize: '0.74rem',
+                  lineHeight: 1.7,
+                  color: 'var(--color-aihana-gilt-deep)',
+                  letterSpacing: '0.015em',
+                }}
+              >
+                {technicalNote}
+              </aside>
+            </div>
           </AnimatedOnScroll>
         </div>
       </div>
 
-      {/* Hairline bracket — bottom */}
-      <div className="max-w-6xl mx-auto px-6 mt-16 md:mt-20">
-        <div className="hairline-rule" />
-      </div>
     </section>
   );
 }

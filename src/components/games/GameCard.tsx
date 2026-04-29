@@ -36,12 +36,20 @@ export function GameCard({ game }: { game: GameInfo }) {
         >
           {game.art ? (
             <div
-              className="absolute inset-0 m-3 bg-aihana-ink overflow-hidden"
-              style={{ padding: 4, borderRadius: 2 }}
+              className="absolute inset-0 m-3 overflow-hidden"
+              style={{
+                padding: 6,
+                borderRadius: 2,
+                backgroundColor: 'var(--color-aihana-paper-low)',
+                border: '1px solid rgba(26,18,40,0.18)',
+              }}
             >
               <div
                 className="relative w-full h-full overflow-hidden"
-                style={{ borderRadius: 1 }}
+                style={{
+                  borderRadius: 1,
+                  boxShadow: 'inset 0 1px 2px rgba(26,18,40,0.1)',
+                }}
               >
                 <Image
                   src={game.art}
@@ -54,10 +62,14 @@ export function GameCard({ game }: { game: GameInfo }) {
             </div>
           ) : (
             <div
-              className="absolute inset-0 m-3 bg-aihana-ink flex items-center justify-center"
-              style={{ borderRadius: 2 }}
+              className="absolute inset-0 m-3 flex items-center justify-center"
+              style={{
+                borderRadius: 2,
+                backgroundColor: 'var(--color-aihana-paper-low)',
+                border: '1px solid rgba(26,18,40,0.18)',
+              }}
             >
-              <span className="text-5xl">{game.icon}</span>
+              <span className="text-5xl opacity-50">{game.icon}</span>
             </div>
           )}
         </div>

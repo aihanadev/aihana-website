@@ -15,13 +15,29 @@ const gameLinks = [
 
 export function Footer() {
   return (
-    <footer className="bg-aihana-paper paper-grain border-t border-aihana-ink/15">
+    <footer className="border-t border-aihana-ink/15">
       <div className="max-w-7xl mx-auto px-6 py-16">
         {/* Columns — italic serif headers + ink links. Eyebrow style
             mirrors the lobby's TOC head ("contents · eight ways to play"). */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
-          {/* Brand colophon */}
+          {/* Brand colophon — folio nº + wordmark + subtitles.
+              The folio number ties the storefront to the app lobby's
+              own folio nº counter (mobile useFolioNumber); here it's
+              static as the inaugural issue. Reviewer note:
+              "the site itself is a daily issue. That's an underused
+              asset." */}
           <div>
+            <span
+              className="text-aihana-ink-faint uppercase block mb-3"
+              style={{
+                fontFamily: 'var(--font-folio)',
+                fontSize: '0.62rem',
+                letterSpacing: '0.3em',
+                fontWeight: 600,
+              }}
+            >
+              folio nº 1 · the inaugural issue
+            </span>
             <h3
               className="text-aihana-ink mb-3"
               style={{

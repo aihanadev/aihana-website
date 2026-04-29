@@ -14,13 +14,8 @@ export function GameShowcase() {
   return (
     <section
       id="games"
-      className="relative py-24 md:py-32 paper-grain bg-aihana-paper"
+      className="relative py-24 md:py-32"
     >
-      {/* Hairline bracket — top */}
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="hairline-rule mb-16 md:mb-20" />
-      </div>
-
       <div className="max-w-7xl mx-auto">
         {/* Header — eyebrow + serif italic headline + body. */}
         <div className="text-center mb-16 px-6">
@@ -87,10 +82,6 @@ export function GameShowcase() {
         </div>
       </div>
 
-      {/* Hairline bracket — bottom */}
-      <div className="max-w-7xl mx-auto px-6 mt-16 md:mt-20">
-        <div className="hairline-rule" />
-      </div>
     </section>
   );
 }

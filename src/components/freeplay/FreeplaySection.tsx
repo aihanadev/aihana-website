@@ -18,12 +18,7 @@ const ROMAN = ['I', 'II', 'III', 'IV'];
 
 export function FreeplaySection() {
   return (
-    <section className="relative paper-grain bg-aihana-paper">
-      {/* Hairline ink bracket — top */}
-      <div className="max-w-6xl mx-auto px-6">
-        <div className="hairline-rule mt-8 md:mt-12" />
-      </div>
-
+    <section className="relative">
       {/* Section header */}
       <div className="text-center pt-20 pb-12 px-6">
         <AnimatedOnScroll duration={0.5} easing={[0.34, 1.56, 0.64, 1]}>
@@ -138,10 +133,6 @@ export function FreeplaySection() {
         ))}
       </div>
 
-      {/* Hairline ink bracket — bottom */}
-      <div className="max-w-6xl mx-auto px-6">
-        <div className="hairline-rule mb-12" />
-      </div>
     </section>
   );
 }

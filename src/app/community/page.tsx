@@ -34,7 +34,7 @@ export default function CommunityPage() {
   return (
     <main>
       <Navbar />
-      <div className="bg-aihana-paper paper-grain min-h-screen">
+      <div className="min-h-screen">
         <div className="max-w-4xl mx-auto px-6 pt-32 pb-24">
           {/* Header */}
           <header className="text-center mb-14">

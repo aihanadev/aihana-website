@@ -103,10 +103,10 @@ export function Navbar() {
         </div>
       </nav>
 
-      {/* Mobile overlay — full paper sheet with paper-grain. Same
-          hierarchy as desktop: italic serif links + vermillion CTA. */}
+      {/* Mobile overlay — paper-high sheet. Body grain shows
+          through naturally; no per-overlay paper-grain needed. */}
       {menuOpen && (
-        <div className="fixed inset-0 z-40 bg-aihana-paper-high paper-grain flex flex-col items-center justify-center gap-7">
+        <div className="fixed inset-0 z-40 bg-aihana-paper-high flex flex-col items-center justify-center gap-7">
           <a
             href="#games"
             onClick={() => setMenuOpen(false)}

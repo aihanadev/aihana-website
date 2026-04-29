@@ -61,6 +61,16 @@ html {
 
 body {
   background-color: var(--color-aihana-paper);
+  /* Single continuous grain layer — the whole document is one folio
+     sheet now, not a stack of per-section paper rectangles. The SVG
+     fractalNoise filter lays a faint warm fiber texture across every
+     page; sections drop their individual paper-grain overlays in
+     favor of this one. (Reviewer note: "make the homepage itself the
+     paper folio. Not a hero with paper accents — the entire page as
+     a single folio sheet.") */
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.6' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.10 0 0 0 0 0.07 0 0 0 0 0.16 0 0 0 0.04 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23p)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 200px 200px;
   color: var(--color-aihana-ink);
   font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;

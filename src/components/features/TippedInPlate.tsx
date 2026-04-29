@@ -46,23 +46,39 @@ export function TippedInPlate({
         {eyebrow}
       </div>
 
-      {/* Plate — ink mat with photo corners. */}
+      {/* Plate — paper-tone mat with photo corners. The mat used to
+          be ink-colored (parity with the app lobby HeroPlate), but
+          on a continuous paper page the dark frame dominated and
+          read as "dark plate ON paper" instead of "tipped-in photo
+          ONTO paper." Reviewer note: "the page sounds like a folio
+          and doesn't look like one." Mat is now paper-low with a
+          hairline ink border, so the image sits on a slightly
+          recessed paper margin. Photo corners do the work of
+          pinning the photo onto the page. */}
       <div
         className="relative"
         style={{
           width,
           height,
           transform: `rotate(${tilt}deg)`,
-          boxShadow: '0 12px 32px rgba(26,18,40,0.22)',
+          boxShadow: '0 10px 28px rgba(26,18,40,0.16)',
         }}
       >
         <div
-          className="absolute inset-0 bg-aihana-ink overflow-hidden"
-          style={{ padding: 5, borderRadius: 4 }}
+          className="absolute inset-0 overflow-hidden"
+          style={{
+            padding: 8,
+            borderRadius: 2,
+            backgroundColor: 'var(--color-aihana-paper-low)',
+            border: '1px solid rgba(26,18,40,0.18)',
+          }}
         >
           <div
             className="relative w-full h-full overflow-hidden"
-            style={{ borderRadius: 2 }}
+            style={{
+              borderRadius: 1,
+              boxShadow: 'inset 0 1px 3px rgba(26,18,40,0.12)',
+            }}
           >
             <Image
               src={src}
@@ -76,7 +92,9 @@ export function TippedInPlate({
         </div>
 
         {/* Photo corners — small ink-tinted squares at each corner.
-            Same vocabulary as LobbyPaper.PhotoCorners. */}
+            Same vocabulary as LobbyPaper.PhotoCorners. Now reading
+            as "the photo's been tipped onto the page" rather than
+            decorative trim on a dark frame. */}
         <PhotoCorner top={-4} left={-4} />
         <PhotoCorner top={-4} right={-4} />
         <PhotoCorner bottom={-4} left={-4} />

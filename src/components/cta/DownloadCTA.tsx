@@ -11,12 +11,7 @@ import { URLS } from '@/lib/constants';
 
 export function DownloadCTA() {
   return (
-    <section className="relative py-24 md:py-32 paper-grain bg-aihana-paper overflow-hidden">
-      {/* Hairline ink bracket — top */}
-      <div className="max-w-6xl mx-auto px-6">
-        <div className="hairline-rule mb-16" />
-      </div>
-
+    <section className="relative py-24 md:py-32 overflow-hidden">
       <div className="relative z-10 max-w-xl mx-auto px-6 text-center">
         {/* Eyebrow — italic uppercase serif. */}
         <AnimatedOnScroll>
@@ -153,10 +148,6 @@ export function DownloadCTA() {
         </p>
       </div>
 
-      {/* Hairline ink bracket — bottom */}
-      <div className="max-w-6xl mx-auto px-6 mt-16">
-        <div className="hairline-rule" />
-      </div>
     </section>
   );
 }

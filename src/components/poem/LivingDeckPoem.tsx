@@ -61,21 +61,8 @@ export function LivingDeckPoem() {
   return (
     <section
       ref={containerRef}
-      className="relative min-h-[80vh] flex items-center justify-center overflow-hidden py-24 bg-aihana-paper paper-grain"
+      className="relative min-h-[80vh] flex items-center justify-center overflow-hidden py-24"
     >
-      {/* Soft top-down warm gradient — paperHigh crowns the page,
-          fading to the body paper. No video, no radial vignette. */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background:
-            'linear-gradient(180deg, #FAF3DD 0%, #F4ECD3 70%, #F4ECD3 100%)',
-        }}
-      />
-
-      {/* Hairline ink brackets — frame the poem like a chapter. */}
-      <div className="absolute top-[8%] left-[8%] right-[8%] h-px bg-aihana-ink/12 pointer-events-none" />
-      <div className="absolute bottom-[8%] left-[8%] right-[8%] h-px bg-aihana-ink/12 pointer-events-none" />
 
       <div className="relative z-10 max-w-md mx-auto px-6 text-center">
         {/* Eyebrow */}

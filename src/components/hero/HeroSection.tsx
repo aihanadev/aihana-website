@@ -46,10 +46,12 @@ export function HeroSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative h-svh flex items-center justify-center overflow-hidden bg-aihana-paper paper-grain"
+      className="relative h-svh flex items-center justify-center overflow-hidden"
     >
-      {/* Top-down warmth — paper-high crowns the masthead area, fading
-          to the body paper. Mirrors LobbyPaper's PAPER_HIGH gradient. */}
+      {/* Top-down warmth — paper-high crowns the masthead area,
+          fading to the body paper. Mirrors LobbyPaper's PAPER_HIGH
+          gradient. The single body-level grain layer carries the
+          fiber texture; the hero just adds this gradient on top. */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
@@ -57,11 +59,6 @@ export function HeroSection() {
             'linear-gradient(180deg, #FAF3DD 0%, #F4ECD3 60%, #F4ECD3 100%)',
         }}
       />
-
-      {/* Hairline ink bracket — top + bottom of viewport, very faint.
-          Frames the hero like a folio page. */}
-      <div className="absolute top-[6%] left-[6%] right-[6%] h-px bg-aihana-ink/15 pointer-events-none" />
-      <div className="absolute bottom-[6%] left-[6%] right-[6%] h-px bg-aihana-ink/15 pointer-events-none" />
 
       <motion.div
         className="relative z-10 px-6 max-w-3xl mx-auto text-center"

@@ -7,7 +7,7 @@ export default function TermsPage() {
   return (
     <main>
       <Navbar />
-      <div className="bg-aihana-paper paper-grain min-h-[60vh]">
+      <div className="min-h-[60vh]">
         <div className="max-w-2xl mx-auto px-6 pt-32 pb-20 text-center">
           <span
             className="text-aihana-ink-faint uppercase block mb-4"
