@@ -181,8 +181,12 @@ export function HeroSection() {
           <div className="hairline-rule" />
         </motion.div>
 
-        {/* CTAs — vermillion ribbon (primary) + ink-ghost (secondary).
-            Replaces the violet gradient buttons. */}
+        {/* CTAs — vermillion ribbon to download (primary) + ink-ghost
+            "see the table" anchor (secondary). The app is shipping;
+            primary action is install, not "be notified". (Reviewer
+            note: previous primary was a Google Form, which inverted
+            the funnel against the App Store / Play Store links in
+            the footer. CTA hierarchy now matches the page state.) */}
         <motion.div
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
@@ -190,7 +194,7 @@ export function HeroSection() {
           className="flex flex-col sm:flex-row gap-3 justify-center items-center"
         >
           <a
-            href={URLS.notifyForm}
+            href={URLS.appStore}
             target="_blank"
             rel="noopener noreferrer"
             className="px-8 py-3 font-medium uppercase
@@ -205,10 +209,12 @@ export function HeroSection() {
               borderRadius: 2,
             }}
           >
-            be notified
+            download for iOS
           </a>
           <a
-            href="#showcase"
+            href={URLS.googlePlay}
+            target="_blank"
+            rel="noopener noreferrer"
             className="px-8 py-3 font-medium uppercase
               text-aihana-ink
               border border-aihana-ink/40
@@ -221,7 +227,7 @@ export function HeroSection() {
               borderRadius: 2,
             }}
           >
-            watch demo
+            download for android
           </a>
         </motion.div>
       </motion.div>

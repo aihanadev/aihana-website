@@ -64,25 +64,31 @@ export function DualPhoneShowcase() {
           </AnimatedOnScroll>
         </div>
 
-        {/* Phone pair */}
+        {/* Phone pair — distinct scenes per seat (reviewer note:
+            previous identical splash mocks undersold the multiplayer
+            story). Left phone shows the PASSING phase (seat tapping
+            three to pass left). Right phone shows the same hand a
+            moment later, in trick play (the bot leads, the human's
+            playable clubs lift in their fan). The viewer reads the
+            two phones as one match unfolding from both sides. */}
         <div className="flex flex-col md:flex-row items-center justify-center gap-8 lg:gap-16">
           <AnimatedOnScroll animation="slideFromLeft" className="text-center">
-            <PhoneMockup tilt="left" />
+            <PhoneMockup tilt="left" scene="passing" />
             <p
               className="mt-4 text-aihana-ink-faint italic"
               style={{ fontFamily: 'var(--font-folio)', fontSize: '0.85rem' }}
             >
-              first seat
+              the pass
             </p>
           </AnimatedOnScroll>
 
           <AnimatedOnScroll animation="slideFromRight" delay={0.15} className="text-center">
-            <PhoneMockup tilt="right" />
+            <PhoneMockup tilt="right" scene="trick" />
             <p
               className="mt-4 text-aihana-ink-faint italic"
               style={{ fontFamily: 'var(--font-folio)', fontSize: '0.85rem' }}
             >
-              second seat
+              the trick
             </p>
           </AnimatedOnScroll>
         </div>

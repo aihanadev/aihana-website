@@ -107,7 +107,7 @@ export function Footer() {
             className="italic text-aihana-ink-faint/80 max-w-2xl mx-auto"
             style={{ fontSize: '0.72rem', lineHeight: 1.7, letterSpacing: '0.02em' }}
           >
-            AIHANA<sup className="text-[0.7em] align-super">™</sup>, A Dealer Who Remembers<sup className="text-[0.7em] align-super">™</sup>, and The Living Deck<sup className="text-[0.7em] align-super">™</sup> are trademarks of Aihana, LLC. patent pending.
+            AIHANA<sup className="text-[0.7em] align-super">™</sup>, A Dealer Who Remembers<sup className="text-[0.7em] align-super">™</sup>, and The Living Deck<sup className="text-[0.7em] align-super">™</sup> are trademarks of Aihana, LLC.
           </p>
         </div>
       </div>

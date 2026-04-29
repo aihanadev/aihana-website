@@ -28,10 +28,10 @@ export default function LandingPage() {
       <DualPhoneShowcase />
 
       <FeatureSection
-        label="THE LIVING DECK"
-        headline="cards that remember"
+        label="pillar I · the deck remembers"
+        headline="cards that remember."
         body="Every card in Aihana carries its history. The Ace of Spades that won your last war? It remembers. Play a card today, and three days later, your dealer might recall the moment. This isn't a database — it's a living deck."
-        technicalNote="memory uptime: 99.5% · retrieval latency: <150ms"
+        technicalNote="memory uptime 99.5% · retrieval latency <150ms · patent pending"
         visual={
           <TippedInPlate
             src="/hanafuda/nov_rainman.png"
@@ -46,10 +46,10 @@ export default function LandingPage() {
       />
 
       <FeatureSection
-        label="TEACHABLE INTELLIGENCE"
-        headline="a dealer who listens"
+        label="pillar II · the dealer listens"
+        headline="a dealer who learns by hand."
         body="Speak naturally. Aihana's AI dealer understands what you mean, not just what you type. Say 'make 7s wild' during Crazy Eights, and the dealer interprets, validates, and applies — in real time. Teach by playing, not by programming."
-        technicalNote="dual-LLM validation · 5-stage intent classification · patent pending"
+        technicalNote="dual-LLM validation · 5-stage intent classification"
         visual={
           <TippedInPlate
             src="/games/full/free_play.png"
@@ -64,8 +64,8 @@ export default function LandingPage() {
       />
 
       <FeatureSection
-        label="FAIRNESS AS FLOW"
-        headline="every table plays fair"
+        label="pillar III · the table balances"
+        headline="every table plays fair."
         body="Rule changes require consensus. Win rates are monitored. RNG is auditable. Aihana doesn't just shuffle cards — it ensures the game stays balanced, transparent, and respectful. When someone proposes a house rule, everyone votes."
         technicalNote="cryptographic RNG · <70% dominance threshold · real-time fairness index"
         visual={

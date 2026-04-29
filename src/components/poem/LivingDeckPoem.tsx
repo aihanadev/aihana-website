@@ -77,10 +77,10 @@ export function LivingDeckPoem() {
       <div className="absolute top-[8%] left-[8%] right-[8%] h-px bg-aihana-ink/12 pointer-events-none" />
       <div className="absolute bottom-[8%] left-[8%] right-[8%] h-px bg-aihana-ink/12 pointer-events-none" />
 
-      <div className="relative z-10 max-w-2xl mx-auto px-6 text-center">
+      <div className="relative z-10 max-w-md mx-auto px-6 text-center">
         {/* Eyebrow */}
         <div
-          className="text-aihana-ink-faint uppercase mb-8"
+          className="text-aihana-ink-faint uppercase mb-10"
           style={{
             fontFamily: 'var(--font-folio)',
             fontSize: '0.7rem',
@@ -91,12 +91,20 @@ export function LivingDeckPoem() {
           plate IV · the river
         </div>
 
+        {/* Verse — narrow column, generous line-height, italic
+            Spectral. Reviewer note: standard paragraphs would waste
+            this copy. Set as marginalia: ~28em max-width, larger
+            line-height (1.95), each line allowed to break naturally,
+            stanza breaks rendered as full empty lines. */}
         <div
+          className="mx-auto text-left"
           style={{
             fontFamily: 'var(--font-folio)',
-            fontSize: 'clamp(1rem, 1.8vw, 1.2rem)',
+            fontSize: 'clamp(1rem, 1.7vw, 1.15rem)',
             fontStyle: 'italic',
-            lineHeight: 1.85,
+            lineHeight: 1.95,
+            maxWidth: '28em',
+            letterSpacing: '0.005em',
           }}
         >
           {POEM_LINES.map((line, i) => (
