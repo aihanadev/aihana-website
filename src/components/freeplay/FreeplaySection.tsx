@@ -31,7 +31,7 @@ export function FreeplaySection() {
               fontWeight: 600,
             }}
           >
-            the crown jewel
+            chapter · the crown jewel
           </span>
         </AnimatedOnScroll>
         <AnimatedOnScroll delay={0.1} duration={0.7} easing={[0.22, 1, 0.36, 1]}>

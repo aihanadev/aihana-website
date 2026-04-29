@@ -24,7 +24,7 @@ export function DownloadCTA() {
               fontWeight: 600,
             }}
           >
-            the table is open
+            tonight · the table is open
           </span>
         </AnimatedOnScroll>
 
@@ -54,7 +54,7 @@ export function DownloadCTA() {
               lineHeight: 1.7,
             }}
           >
-            available on iOS and Android. eight games to begin with — more in the folio as the dealer learns your hand.
+            available on iOS and Android. eight games tonight — Texas Hold'em arrives in tomorrow's folio.
           </p>
         </AnimatedOnScroll>
 

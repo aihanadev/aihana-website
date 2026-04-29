@@ -1,9 +1,13 @@
-// Landing page — paper-folio brand surfaces (hero / nav / feature
-// template / footer / CTA) plus existing indigo-era surfaces below
-// the fold (DualPhoneShowcase, FreeplaySection, GameShowcase, poem).
-// The handoff is intentional for now — the brand-defining surfaces
-// flip first; the rest are scoped for a follow-up if the paper hero
-// proves out.
+// Landing page — single paper-folio document. Reading order mirrors a
+// printed folio: title page (hero) → table of contents (GameShowcase
+// vertical TOC) → chapters (the three pillars) → demonstration plate
+// (one tipped-in gameplay scene) → crown jewel (Free Play) → verse
+// (Living Deck poem) → closing CTA → colophon (footer).
+//
+// Reviewer note: "make the homepage itself the paper folio. Not a
+// hero with paper accents — the entire page as a single folio sheet,
+// scrollable, with the eight-game TOC as the spine." The TOC has
+// moved up to sit immediately under the hero — the spine.
 
 import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
@@ -20,13 +24,16 @@ export default function LandingPage() {
   return (
     <main>
       <Navbar />
+
+      {/* Title page */}
       <HeroSection />
 
-      {/* Indigo-era showcase — kept until the photo-mockup section is
-          re-cut for the paper substrate. Scope-limited to keep this PR
-          focused on brand-defining surfaces. */}
-      <DualPhoneShowcase />
+      {/* Table of contents — the spine. Sits directly under the hero
+          per the reviewer's "TOC as the spine" call: a real folio
+          opens with its index, and only then walks the chapters. */}
+      <GameShowcase />
 
+      {/* Chapters — the three pillars. */}
       <FeatureSection
         label="pillar I · the deck remembers"
         headline="cards that remember."
@@ -81,12 +88,20 @@ export default function LandingPage() {
         layout="visual-left"
       />
 
-      {/* Below-the-fold surfaces — still on indigo glass for now.
-          Will paper in a follow-up if the brand surfaces validate. */}
+      {/* The demonstration plate — single tipped-in gameplay scene
+          (collapsed from the previous dual-phone block). */}
+      <DualPhoneShowcase />
+
+      {/* The crown jewel chapter — Free Play. */}
       <FreeplaySection />
+
+      {/* The verse — plate IV · the river. Marginalia treatment. */}
       <LivingDeckPoem />
-      <GameShowcase />
+
+      {/* Closing call. */}
       <DownloadCTA />
+
+      {/* Colophon. */}
       <Footer />
     </main>
   );
