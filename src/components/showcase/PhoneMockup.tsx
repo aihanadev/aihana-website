@@ -7,8 +7,8 @@
 // renders inside the screen, but unsupplied screens fall back to a
 // paper-folio splash mock instead of an emoji.
 
-import { useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
+import { useRef, useState, useEffect } from 'react';
+import { motion, useInView, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 
 interface Props {
@@ -267,9 +267,61 @@ function PassingScene() {
   );
 }
 
+// TrickScene — animated. The reviewer's "one contrasting section that
+// proves the system is alive" lands here: cards arrive into the trick
+// lane sequentially, the dealer's whisper cycles in step, and on each
+// completion the winning card glows briefly before the lane clears
+// and the cycle restarts. Deliberately slow paced (~9s loop) so the
+// motion feels ceremonial rather than arcade — paper-folio voice.
+
 function TrickScene() {
+  // Phase 0: empty lane (the table opens)
+  // Phase 1: West plays the lead (2♣)
+  // Phase 2: North follows (5♣)
+  // Phase 3: East joins (Q♣)
+  // Phase 4: South completes (K♣) — winner glow on the highest club
+  // Phase 5: trick collected, brief pause, then back to 0
+  const [phase, setPhase] = useState(0);
+  const ref = useRef(null);
+  const inView = useInView(ref, { margin: '-80px' });
+
+  useEffect(() => {
+    if (!inView) return;
+    // Each phase advances on its own delay so the rhythm has breath.
+    const delays = [1000, 1500, 1500, 1500, 2400, 1100]; // total ~9s
+    const t = setTimeout(() => {
+      setPhase((p) => (p + 1) % 6);
+    }, delays[phase]);
+    return () => clearTimeout(t);
+  }, [phase, inView]);
+
+  // Dealer whisper line — cycles in step with the trick. Each line
+  // advances when phase advances. AnimatePresence cross-fades.
+  const whispers = [
+    'tonight. the rain. the table opens.',
+    'bot bob leads with the two of clubs.',
+    'bot alice answers.',
+    'bot carol joins.',
+    'you take the trick. no points.',
+    'the cards return to the deck.',
+  ];
+
+  // Cards in the trick lane — appear in order. Winner is the K♣ at S.
+  type Slot = 'W' | 'N' | 'E' | 'S';
+  const trickCards: Array<{
+    suit: Slot;
+    rank: string;
+    sym: string;
+    appearAt: number;
+  }> = [
+    { suit: 'W', rank: '2', sym: '♣', appearAt: 1 },
+    { suit: 'N', rank: '5', sym: '♣', appearAt: 2 },
+    { suit: 'E', rank: 'Q', sym: '♣', appearAt: 3 },
+    { suit: 'S', rank: 'K', sym: '♣', appearAt: 4 },
+  ];
+
   return (
-    <div className="w-full h-full flex flex-col paper-grain px-3 pt-8">
+    <div ref={ref} className="w-full h-full flex flex-col paper-grain px-3 pt-8">
       {/* TopBar */}
       <div className="text-center mb-3">
         <div
@@ -291,106 +343,172 @@ function TrickScene() {
         </div>
       </div>
 
-      {/* Compass seats — top */}
+      {/* Compass seat — top */}
       <div className="flex justify-center mb-1">
         <div
           className="text-aihana-ink-soft italic"
           style={{ fontFamily: 'var(--font-folio)', fontSize: '0.45rem' }}
         >
-          NaRhee · 9c
+          NaRhee · {Math.max(13 - phase, 9)}c
         </div>
       </div>
 
-      {/* Trick lane diamond */}
+      {/* Trick lane diamond — cards animate in by phase. */}
       <div className="relative flex-1 flex items-center justify-center">
-        {/* North slot */}
-        <div className="absolute top-1 left-1/2 -translate-x-1/2 w-5 h-7 border border-aihana-ink/25 rounded-sm" />
-        {/* West slot — face-up A♣ */}
-        <div
-          className="absolute left-2 top-1/2 -translate-y-1/2 w-5 h-7 rounded-sm flex flex-col items-center justify-start pt-0.5"
-          style={{
-            backgroundColor: '#FAF3DD',
-            border: '0.5px solid rgba(26,18,40,0.5)',
-          }}
-        >
-          <span
-            style={{
-              fontFamily: 'var(--font-folio)',
-              fontSize: '0.4rem',
-              color: 'var(--color-aihana-ink)',
-              lineHeight: 1,
-            }}
-          >
-            A♣
-          </span>
-        </div>
-        {/* East slot — face-up K♣ */}
-        <div
-          className="absolute right-2 top-1/2 -translate-y-1/2 w-5 h-7 rounded-sm flex flex-col items-center justify-start pt-0.5"
-          style={{
-            backgroundColor: '#FAF3DD',
-            border: '0.5px solid rgba(26,18,40,0.5)',
-          }}
-        >
-          <span
-            style={{
-              fontFamily: 'var(--font-folio)',
-              fontSize: '0.4rem',
-              color: 'var(--color-aihana-ink)',
-              lineHeight: 1,
-            }}
-          >
-            K♣
-          </span>
-        </div>
-        {/* South slot — empty (you to play) */}
-        <div className="absolute bottom-1 left-1/2 -translate-x-1/2 w-5 h-7 border border-aihana-ink/25 rounded-sm" />
-      </div>
+        {/* Empty slots (always rendered) */}
+        <SlotFrame position="N" />
+        <SlotFrame position="W" />
+        <SlotFrame position="E" />
+        <SlotFrame position="S" />
 
-      {/* Whisper */}
-      <div className="border-y border-aihana-ink/10 py-1 mb-2">
-        <p
-          className="text-aihana-ink-soft italic text-center"
-          style={{ fontFamily: 'var(--font-folio)', fontSize: '0.5rem' }}
-        >
-          “bot bob leads with the ace.”
-        </p>
-      </div>
-
-      {/* Hand fan */}
-      <div className="flex justify-center items-end gap-px mb-3">
-        {['2♣', '5♣', '7♣', 'Q♣', '4♥', '9♥', 'J♥', 'A♥', '8♠'].map(
-          (card, i) => {
-            const isRed = card.includes('♥') || card.includes('♦');
-            const isPlayable = card.includes('♣');
+        {/* Animated cards — appear when phase >= card.appearAt */}
+        <AnimatePresence>
+          {trickCards.map((c) => {
+            // Hide when phase < appearAt OR phase 5 (collecting)
+            if (phase < c.appearAt || phase === 5) return null;
+            const isWinner = c.suit === 'S' && phase === 4;
             return (
-              <div
-                key={i}
-                className="w-3.5 h-6 rounded-[1px] flex flex-col items-center justify-start pt-0.5"
+              <motion.div
+                key={c.suit}
+                initial={{ opacity: 0, scale: 0.6, y: -8 }}
+                animate={{
+                  opacity: 1,
+                  scale: 1,
+                  y: 0,
+                  boxShadow: isWinner
+                    ? '0 0 8px rgba(201,162,75,0.8), 0 0 14px rgba(201,162,75,0.4)'
+                    : '0 1px 2px rgba(26,18,40,0.18)',
+                }}
+                exit={{ opacity: 0, scale: 0.85, y: 8 }}
+                transition={{ duration: 0.45, ease: [0.25, 0.1, 0.25, 1] }}
+                className={`absolute w-5 h-7 rounded-sm flex flex-col items-center justify-start pt-0.5 ${slotPos(c.suit)}`}
                 style={{
                   backgroundColor: '#FAF3DD',
-                  border: '0.5px solid rgba(26,18,40,0.35)',
-                  opacity: isPlayable ? 1 : 0.45,
-                  transform: `rotate(${(i - 4) * 5}deg) translateY(${
-                    Math.abs(i - 4) * 1
-                  }px)`,
+                  border: '0.5px solid rgba(26,18,40,0.5)',
                 }}
               >
                 <span
                   style={{
                     fontFamily: 'var(--font-folio)',
-                    fontSize: '0.32rem',
-                    color: isRed ? 'var(--color-aihana-vermillion)' : 'var(--color-aihana-ink)',
+                    fontSize: '0.36rem',
+                    color: 'var(--color-aihana-ink)',
                     lineHeight: 1,
                   }}
                 >
-                  {card}
+                  {c.rank}
                 </span>
-              </div>
+                <span
+                  style={{
+                    fontFamily: 'var(--font-folio)',
+                    fontSize: '0.36rem',
+                    color: 'var(--color-aihana-ink)',
+                    lineHeight: 1,
+                  }}
+                >
+                  {c.sym}
+                </span>
+              </motion.div>
             );
-          }
-        )}
+          })}
+        </AnimatePresence>
+      </div>
+
+      {/* Whisper — cross-fades on phase change. */}
+      <div
+        className="border-y border-aihana-ink/10 py-1 mb-2 relative"
+        style={{ minHeight: '0.9rem' }}
+      >
+        <AnimatePresence mode="wait">
+          <motion.p
+            key={phase}
+            initial={{ opacity: 0, y: 4 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -4 }}
+            transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
+            className="text-aihana-ink-soft italic text-center"
+            style={{ fontFamily: 'var(--font-folio)', fontSize: '0.5rem' }}
+          >
+            “{whispers[phase]}”
+          </motion.p>
+        </AnimatePresence>
+      </div>
+
+      {/* Hand fan — playable clubs lifted slightly, others dimmed.
+          As phase advances and clubs are played, their copies in
+          the hand fade out (state changing — the reviewer's third
+          alive-signal alongside cards-moving + dealer-speaking). */}
+      <div className="flex justify-center items-end gap-px mb-3">
+        {[
+          { c: '2♣', played: phase >= 1 },
+          { c: '5♣', played: phase >= 2 },
+          { c: 'Q♣', played: phase >= 3 },
+          { c: 'K♣', played: phase >= 4 },
+          { c: '4♥', played: false },
+          { c: '9♥', played: false },
+          { c: 'J♥', played: false },
+          { c: 'A♥', played: false },
+          { c: '8♠', played: false },
+        ].map((entry, i) => {
+          const card = entry.c;
+          const isRed = card.includes('♥') || card.includes('♦');
+          const isPlayable = card.includes('♣');
+          return (
+            <motion.div
+              key={i}
+              animate={{
+                opacity: entry.played ? 0.18 : isPlayable ? 1 : 0.5,
+                y: entry.played ? 4 : 0,
+              }}
+              transition={{ duration: 0.4 }}
+              className="w-3.5 h-6 rounded-[1px] flex flex-col items-center justify-start pt-0.5"
+              style={{
+                backgroundColor: '#FAF3DD',
+                border: '0.5px solid rgba(26,18,40,0.35)',
+                transform: `rotate(${(i - 4) * 5}deg) translateY(${
+                  Math.abs(i - 4) * 1
+                }px)`,
+              }}
+            >
+              <span
+                style={{
+                  fontFamily: 'var(--font-folio)',
+                  fontSize: '0.32rem',
+                  color: isRed
+                    ? 'var(--color-aihana-vermillion)'
+                    : 'var(--color-aihana-ink)',
+                  lineHeight: 1,
+                }}
+              >
+                {card}
+              </span>
+            </motion.div>
+          );
+        })}
       </div>
     </div>
   );
+}
+
+// ── TrickLane sub-helpers ─────────────────────────────────
+
+function SlotFrame({ position }: { position: 'N' | 'W' | 'E' | 'S' }) {
+  return (
+    <div
+      className={`absolute w-5 h-7 border border-aihana-ink/22 rounded-sm ${slotPos(position)}`}
+    />
+  );
+}
+
+function slotPos(p: 'N' | 'W' | 'E' | 'S'): string {
+  // Compass diamond: N top, S bottom, W/E sides.
+  switch (p) {
+    case 'N':
+      return 'top-1 left-1/2 -translate-x-1/2';
+    case 'S':
+      return 'bottom-1 left-1/2 -translate-x-1/2';
+    case 'W':
+      return 'left-2 top-1/2 -translate-y-1/2';
+    case 'E':
+      return 'right-2 top-1/2 -translate-y-1/2';
+  }
 }
