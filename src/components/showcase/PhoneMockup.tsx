@@ -320,170 +320,275 @@ function TrickScene() {
     { suit: 'S', rank: 'K', sym: '♣', appearAt: 4 },
   ];
 
+  // Hand inventory — 9 cards, four are clubs that get played in order.
+  type HandEntry = { rank: string; sym: string; played: number | null };
+  const hand: HandEntry[] = [
+    { rank: '2', sym: '♣', played: 1 },
+    { rank: '5', sym: '♣', played: 2 },
+    { rank: 'Q', sym: '♣', played: 3 },
+    { rank: 'K', sym: '♣', played: 4 },
+    { rank: '4', sym: '♥', played: null },
+    { rank: '9', sym: '♥', played: null },
+    { rank: 'J', sym: '♥', played: null },
+    { rank: 'A', sym: '♥', played: null },
+    { rank: '8', sym: '♠', played: null },
+  ];
+
   return (
-    <div ref={ref} className="w-full h-full flex flex-col paper-grain px-3 pt-8">
-      {/* TopBar */}
-      <div className="text-center mb-3">
+    <div
+      ref={ref}
+      className="w-full h-full flex flex-col paper-grain px-3 py-6"
+    >
+      {/* TopBar — Hearts eyebrow + dateline. Gilt brand mark, italic
+          subhead in dealer voice. */}
+      <div className="text-center">
         <div
           className="text-aihana-gilt-deep uppercase"
           style={{
             fontFamily: 'var(--font-folio)',
-            fontSize: '0.45rem',
+            fontSize: '0.55rem',
             letterSpacing: '0.3em',
             fontWeight: 600,
           }}
         >
-          Hearts
+          ◆ HEARTS
         </div>
         <div
           className="text-aihana-ink-soft italic mt-0.5"
-          style={{ fontFamily: 'var(--font-folio)', fontSize: '0.5rem' }}
+          style={{ fontFamily: 'var(--font-folio)', fontSize: '0.6rem' }}
         >
           a trick in motion
         </div>
       </div>
 
-      {/* Compass seat — top */}
-      <div className="flex justify-center mb-1">
-        <div
-          className="text-aihana-ink-soft italic"
-          style={{ fontFamily: 'var(--font-folio)', fontSize: '0.45rem' }}
-        >
-          NaRhee · {Math.max(13 - phase, 9)}c
-        </div>
+      {/* Compass seats row — opponent names. Live hand-count ticks. */}
+      <div className="flex justify-between items-center px-3 mt-3 mb-2">
+        <SeatChip name="alice" cards={Math.max(13 - phase, 9)} active={phase === 2} />
+        <SeatChip name="bob" cards={13} active={phase === 1} />
+        <SeatChip name="carol" cards={13} active={phase === 3} />
       </div>
 
-      {/* Trick lane diamond — cards animate in by phase. */}
-      <div className="relative flex-1 flex items-center justify-center">
-        {/* Empty slots (always rendered) */}
+      {/* Trick lane — compass diamond with cards 2.5× larger than
+          before. Slots span ~58% of the phone height so the cards
+          read clearly. */}
+      <div className="relative flex-shrink-0" style={{ height: 175 }}>
         <SlotFrame position="N" />
         <SlotFrame position="W" />
         <SlotFrame position="E" />
         <SlotFrame position="S" />
 
-        {/* Animated cards — appear when phase >= card.appearAt */}
         <AnimatePresence>
           {trickCards.map((c) => {
-            // Hide when phase < appearAt OR phase 5 (collecting)
             if (phase < c.appearAt || phase === 5) return null;
             const isWinner = c.suit === 'S' && phase === 4;
             return (
               <motion.div
                 key={c.suit}
-                initial={{ opacity: 0, scale: 0.6, y: -8 }}
+                initial={{ opacity: 0, scale: 0.55, y: -10 }}
                 animate={{
                   opacity: 1,
                   scale: 1,
                   y: 0,
                   boxShadow: isWinner
-                    ? '0 0 8px rgba(201,162,75,0.8), 0 0 14px rgba(201,162,75,0.4)'
-                    : '0 1px 2px rgba(26,18,40,0.18)',
+                    ? '0 0 12px rgba(201,162,75,0.85), 0 0 22px rgba(201,162,75,0.45)'
+                    : '0 2px 4px rgba(26,18,40,0.22)',
                 }}
                 exit={{ opacity: 0, scale: 0.85, y: 8 }}
-                transition={{ duration: 0.45, ease: [0.25, 0.1, 0.25, 1] }}
-                className={`absolute w-5 h-7 rounded-sm flex flex-col items-center justify-start pt-0.5 ${slotPos(c.suit)}`}
+                transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
+                className={`absolute ${slotPos(c.suit)}`}
                 style={{
+                  width: 42,
+                  height: 60,
+                  borderRadius: 4,
                   backgroundColor: '#FAF3DD',
-                  border: '0.5px solid rgba(26,18,40,0.5)',
+                  border: '0.5px solid rgba(26,18,40,0.65)',
                 }}
               >
-                <span
-                  style={{
-                    fontFamily: 'var(--font-folio)',
-                    fontSize: '0.36rem',
-                    color: 'var(--color-aihana-ink)',
-                    lineHeight: 1,
-                  }}
-                >
-                  {c.rank}
-                </span>
-                <span
-                  style={{
-                    fontFamily: 'var(--font-folio)',
-                    fontSize: '0.36rem',
-                    color: 'var(--color-aihana-ink)',
-                    lineHeight: 1,
-                  }}
-                >
-                  {c.sym}
-                </span>
+                <CardFace rank={c.rank} sym={c.sym} />
               </motion.div>
             );
           })}
         </AnimatePresence>
       </div>
 
-      {/* Whisper — cross-fades on phase change. */}
+      {/* Whisper — the focal mid-screen surface. Hairlines top + bottom,
+          larger italic serif than before. Cross-fades on phase change. */}
       <div
-        className="border-y border-aihana-ink/10 py-1 mb-2 relative"
-        style={{ minHeight: '0.9rem' }}
+        className="my-3 relative px-2 flex-shrink-0"
+        style={{ minHeight: 38 }}
       >
+        <div className="hairline-rule" />
         <AnimatePresence mode="wait">
           <motion.p
             key={phase}
-            initial={{ opacity: 0, y: 4 }}
+            initial={{ opacity: 0, y: 6 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -4 }}
-            transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
-            className="text-aihana-ink-soft italic text-center"
-            style={{ fontFamily: 'var(--font-folio)', fontSize: '0.5rem' }}
+            exit={{ opacity: 0, y: -6 }}
+            transition={{ duration: 0.45, ease: [0.25, 0.1, 0.25, 1] }}
+            className="text-aihana-ink-soft italic text-center py-2"
+            style={{
+              fontFamily: 'var(--font-folio)',
+              fontSize: '0.78rem',
+              lineHeight: 1.45,
+              letterSpacing: '0.005em',
+            }}
           >
             “{whispers[phase]}”
           </motion.p>
         </AnimatePresence>
+        <div className="hairline-rule" />
       </div>
 
-      {/* Hand fan — playable clubs lifted slightly, others dimmed.
-          As phase advances and clubs are played, their copies in
-          the hand fade out (state changing — the reviewer's third
-          alive-signal alongside cards-moving + dealer-speaking). */}
-      <div className="flex justify-center items-end gap-px mb-3">
-        {[
-          { c: '2♣', played: phase >= 1 },
-          { c: '5♣', played: phase >= 2 },
-          { c: 'Q♣', played: phase >= 3 },
-          { c: 'K♣', played: phase >= 4 },
-          { c: '4♥', played: false },
-          { c: '9♥', played: false },
-          { c: 'J♥', played: false },
-          { c: 'A♥', played: false },
-          { c: '8♠', played: false },
-        ].map((entry, i) => {
-          const card = entry.c;
-          const isRed = card.includes('♥') || card.includes('♦');
-          const isPlayable = card.includes('♣');
+      {/* Hand fan — properly sized fanned cards at the bottom, mirroring
+          the app's HandFan primitive. Each card ~28×40 with slight
+          rotation + overlap so the fan reads as a real hand. Clubs
+          dim and lower as they're played to the lane. */}
+      <div className="flex justify-center items-end mt-auto pb-2 flex-shrink-0">
+        {hand.map((entry, i) => {
+          const isPlayed =
+            entry.played !== null && phase >= entry.played && phase !== 5;
+          const isRed = entry.sym === '♥' || entry.sym === '♦';
+          const center = (hand.length - 1) / 2;
+          const delta = i - center;
+          const angle = delta * 4.5;
+          const lift = -Math.abs(delta) * 1.2;
           return (
             <motion.div
               key={i}
               animate={{
-                opacity: entry.played ? 0.18 : isPlayable ? 1 : 0.5,
-                y: entry.played ? 4 : 0,
+                opacity: isPlayed ? 0.16 : 1,
+                y: isPlayed ? 8 : lift,
               }}
-              transition={{ duration: 0.4 }}
-              className="w-3.5 h-6 rounded-[1px] flex flex-col items-center justify-start pt-0.5"
+              transition={{ duration: 0.45, ease: [0.25, 0.1, 0.25, 1] }}
               style={{
+                width: 26,
+                height: 38,
+                marginLeft: i === 0 ? 0 : -10,
+                borderRadius: 3,
                 backgroundColor: '#FAF3DD',
-                border: '0.5px solid rgba(26,18,40,0.35)',
-                transform: `rotate(${(i - 4) * 5}deg) translateY(${
-                  Math.abs(i - 4) * 1
-                }px)`,
+                border: '0.5px solid rgba(26,18,40,0.5)',
+                transform: `rotate(${angle}deg)`,
+                transformOrigin: 'bottom center',
+                boxShadow: '0 1px 2px rgba(26,18,40,0.18)',
+                zIndex: 10 - Math.abs(delta),
               }}
             >
-              <span
-                style={{
-                  fontFamily: 'var(--font-folio)',
-                  fontSize: '0.32rem',
-                  color: isRed
-                    ? 'var(--color-aihana-vermillion)'
-                    : 'var(--color-aihana-ink)',
-                  lineHeight: 1,
-                }}
-              >
-                {card}
-              </span>
+              <CardFace rank={entry.rank} sym={entry.sym} red={isRed} small />
             </motion.div>
           );
         })}
+      </div>
+    </div>
+  );
+}
+
+// ── Compass seat chip ─────────────────────────────────────
+
+function SeatChip({
+  name,
+  cards,
+  active,
+}: {
+  name: string;
+  cards: number;
+  active: boolean;
+}) {
+  return (
+    <div
+      className="flex flex-col items-center"
+      style={{
+        opacity: active ? 1 : 0.55,
+        transform: active ? 'translateY(-1px)' : 'none',
+        transition: 'opacity 250ms ease, transform 250ms ease',
+      }}
+    >
+      <div
+        className="text-aihana-ink italic"
+        style={{
+          fontFamily: 'var(--font-folio)',
+          fontSize: '0.6rem',
+          fontWeight: 500,
+        }}
+      >
+        {name}
+      </div>
+      <div
+        className="text-aihana-ink-faint"
+        style={{
+          fontFamily: 'var(--font-folio)',
+          fontSize: '0.55rem',
+          letterSpacing: '0.04em',
+        }}
+      >
+        {cards}c
+      </div>
+    </div>
+  );
+}
+
+// ── Card face ─────────────────────────────────────────────
+// Rank + suit glyph at top-left; mirrored at bottom-right (rotated
+// 180°) the way real playing cards print. Mirrors the app's
+// PlayingCard primitive aesthetic at smaller scale.
+
+function CardFace({
+  rank,
+  sym,
+  red,
+  small,
+}: {
+  rank: string;
+  sym: string;
+  red?: boolean;
+  small?: boolean;
+}) {
+  const color = red ? 'var(--color-aihana-vermillion)' : 'var(--color-aihana-ink)';
+  const fontSize = small ? '0.55rem' : '0.78rem';
+  const symSize = small ? '0.5rem' : '0.7rem';
+  return (
+    <div className="relative w-full h-full">
+      <div
+        style={{
+          position: 'absolute',
+          top: 2,
+          left: 3,
+          fontFamily: 'var(--font-folio)',
+          fontSize,
+          fontWeight: 500,
+          color,
+          lineHeight: 1,
+        }}
+      >
+        {rank}
+      </div>
+      <div
+        style={{
+          position: 'absolute',
+          top: small ? 12 : 14,
+          left: 3,
+          fontFamily: 'var(--font-folio)',
+          fontSize: symSize,
+          color,
+          lineHeight: 1,
+        }}
+      >
+        {sym}
+      </div>
+      <div
+        style={{
+          position: 'absolute',
+          bottom: 2,
+          right: 3,
+          fontFamily: 'var(--font-folio)',
+          fontSize,
+          fontWeight: 500,
+          color,
+          lineHeight: 1,
+          transform: 'rotate(180deg)',
+          transformOrigin: 'center',
+        }}
+      >
+        {rank}
       </div>
     </div>
   );
@@ -494,18 +599,26 @@ function TrickScene() {
 function SlotFrame({ position }: { position: 'N' | 'W' | 'E' | 'S' }) {
   return (
     <div
-      className={`absolute w-5 h-7 border border-aihana-ink/22 rounded-sm ${slotPos(position)}`}
+      className={`absolute ${slotPos(position)}`}
+      style={{
+        width: 42,
+        height: 60,
+        borderRadius: 4,
+        border: '1px dashed rgba(26,18,40,0.22)',
+      }}
     />
   );
 }
 
 function slotPos(p: 'N' | 'W' | 'E' | 'S'): string {
-  // Compass diamond: N top, S bottom, W/E sides.
+  // Compass diamond: N top, S bottom, W/E sides. Centered with
+  // translateX/Y so cards at each compass point are visually anchored
+  // to the center of the lane container.
   switch (p) {
     case 'N':
-      return 'top-1 left-1/2 -translate-x-1/2';
+      return 'top-0 left-1/2 -translate-x-1/2';
     case 'S':
-      return 'bottom-1 left-1/2 -translate-x-1/2';
+      return 'bottom-0 left-1/2 -translate-x-1/2';
     case 'W':
       return 'left-2 top-1/2 -translate-y-1/2';
     case 'E':
