@@ -95,9 +95,29 @@ const SECTIONS: Section[] = [
     ],
   },
   {
+    heading: 'apple app store',
+    body: [
+      'When you use Aihana on an Apple device, the following also applies:',
+      [
+        'These terms are between you and Aihana only — not with Apple. Aihana, not Apple, is solely responsible for the app and its content.',
+        'Apple has no obligation to provide any maintenance or support for the app.',
+        'If the app fails to conform to any applicable warranty, you may notify Apple, and Apple may refund the purchase price (if any); to the maximum extent permitted by law, Apple has no other warranty obligation for the app.',
+        'Apple is not responsible for addressing any claims you or a third party may have relating to the app, including product-liability, regulatory, or consumer-protection claims.',
+        'Apple and its subsidiaries are third-party beneficiaries of these terms and may enforce them against you.',
+        'You represent that you are not located in a country subject to a U.S. Government embargo, and that you are not on any U.S. Government list of prohibited or restricted parties.',
+      ],
+    ],
+  },
+  {
     heading: 'governing law',
     body: [
-      'These terms are governed by the laws of the United States and the State of California, without regard to conflict-of-laws rules.',
+      'These terms are governed by the laws of the State of California, United States, without regard to its conflict-of-laws rules. Any dispute that is not otherwise resolved will be brought in the state or federal courts located in California, and you consent to their jurisdiction.',
+    ],
+  },
+  {
+    heading: 'the rest',
+    body: [
+      'If any part of these terms is found unenforceable, the rest stays in effect. These terms, together with our Privacy Policy, are the entire agreement between you and Aihana about the app. Our not enforcing a provision is not a waiver of it. You may not transfer your rights under these terms; we may transfer ours in connection with a merger, acquisition, or sale of assets.',
     ],
   },
   {
