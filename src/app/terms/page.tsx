@@ -100,9 +100,11 @@ const SECTIONS: Section[] = [
       'When you use Aihana on an Apple device, the following also applies:',
       [
         'These terms are between you and Aihana only — not with Apple. Aihana, not Apple, is solely responsible for the app and its content.',
+        'Your license to use Aihana is a non-transferable license to use it on any Apple-branded device that you own or control, as permitted by the App Store’s Usage Rules (including Family Sharing where applicable).',
         'Apple has no obligation to provide any maintenance or support for the app.',
         'If the app fails to conform to any applicable warranty, you may notify Apple, and Apple may refund the purchase price (if any); to the maximum extent permitted by law, Apple has no other warranty obligation for the app.',
         'Apple is not responsible for addressing any claims you or a third party may have relating to the app, including product-liability, regulatory, or consumer-protection claims.',
+        'If a third party claims that the app or your use of it infringes their intellectual-property rights, Aihana, not Apple, is responsible for the investigation, defense, settlement, and discharge of that claim.',
         'Apple and its subsidiaries are third-party beneficiaries of these terms and may enforce them against you.',
         'You represent that you are not located in a country subject to a U.S. Government embargo, and that you are not on any U.S. Government list of prohibited or restricted parties.',
       ],
