@@ -54,7 +54,7 @@ export function DownloadCTA() {
               lineHeight: 1.7,
             }}
           >
-            available on iOS and Android. eight games tonight — Texas Hold'em arrives in tomorrow's folio.
+            available on iOS — android arrives soon. eight games tonight — Texas Hold'em arrives in tomorrow's folio.
           </p>
         </AnimatedOnScroll>
 
@@ -80,15 +80,14 @@ export function DownloadCTA() {
             >
               download for iOS
             </a>
-            <a
-              href={URLS.googlePlay}
-              target="_blank"
-              rel="noopener noreferrer"
+            {/* Android not yet shipped — inert ghosted affordance so the
+                copy stays honest until the Play release lands. */}
+            <span
+              aria-disabled="true"
               className="px-8 py-3 uppercase
-                bg-aihana-vermillion text-aihana-paper-high
-                border border-aihana-vermillion-deep
-                hover:bg-aihana-vermillion-deep
-                transition-colors duration-200"
+                text-aihana-ink-faint
+                border border-aihana-ink/20
+                cursor-default select-none"
               style={{
                 fontFamily: 'var(--font-folio)',
                 letterSpacing: '0.18em',
@@ -97,8 +96,8 @@ export function DownloadCTA() {
                 borderRadius: 2,
               }}
             >
-              download for android
-            </a>
+              android · coming soon
+            </span>
           </div>
         </AnimatedOnScroll>
 

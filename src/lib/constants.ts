@@ -3,8 +3,9 @@ export const URLS = {
   notifyForm: 'https://docs.google.com/forms/d/e/1FAIpQLSelN0m0twI7-2TPMUUtK7pwDAveQ6raQnzOqSzC7a5owrTT0g/viewform',
   partnershipsForm: 'https://docs.google.com/forms/d/e/1FAIpQLSdVer40h-TM49JIdJ6-vDhOUGLgcGoL8vBZqWsEf23LkSaBpg/viewform',
   reddit: 'https://www.reddit.com/r/aihana/',
-  appStore: 'https://apps.apple.com/app/aihana',
-  googlePlay: 'https://play.google.com/store/apps/details?id=com.anonymous.aihana',
+  appStore: 'https://apps.apple.com/app/id6749252997',
+  // Android not yet shipped — package id matches app.json (io.aihana.app) for when it does.
+  googlePlay: 'https://play.google.com/store/apps/details?id=io.aihana.app',
   email: 'team@aihana.io',
 } as const;
 

@@ -101,7 +101,7 @@ export function Footer() {
               <li><a href={`mailto:${URLS.email}`} className={linkClass}>{URLS.email}</a></li>
               <li><a href={URLS.reddit} target="_blank" rel="noopener noreferrer" className={linkClass}>Reddit r/aihana</a></li>
               <li><a href={URLS.appStore} target="_blank" rel="noopener noreferrer" className={linkClass}>App Store</a></li>
-              <li><a href={URLS.googlePlay} target="_blank" rel="noopener noreferrer" className={linkClass}>Google Play</a></li>
+              <li><span className={`${linkClass} opacity-50 cursor-default`}>Google Play · soon</span></li>
             </ul>
           </div>
         </div>

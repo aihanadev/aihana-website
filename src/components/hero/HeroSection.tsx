@@ -208,15 +208,14 @@ export function HeroSection() {
           >
             download for iOS
           </a>
-          <a
-            href={URLS.googlePlay}
-            target="_blank"
-            rel="noopener noreferrer"
+          {/* Android not yet shipped — inert ghosted affordance until
+              the Play release lands. */}
+          <span
+            aria-disabled="true"
             className="px-8 py-3 font-medium uppercase
-              text-aihana-ink
-              border border-aihana-ink/40
-              hover:bg-aihana-ink/5 hover:border-aihana-ink/70
-              transition-colors duration-200 w-full sm:w-auto text-center"
+              text-aihana-ink-faint
+              border border-aihana-ink/20
+              w-full sm:w-auto text-center cursor-default select-none"
             style={{
               fontFamily: 'var(--font-folio)',
               letterSpacing: '0.18em',
@@ -224,8 +223,8 @@ export function HeroSection() {
               borderRadius: 2,
             }}
           >
-            download for android
-          </a>
+            android · coming soon
+          </span>
         </motion.div>
       </motion.div>
 
