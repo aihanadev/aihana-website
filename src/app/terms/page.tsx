@@ -111,9 +111,19 @@ const SECTIONS: Section[] = [
     ],
   },
   {
+    heading: 'disputes',
+    body: [
+      `Most concerns can be resolved quickly — please write to us at ${URLS.email} first, and we’ll try to resolve it informally.`,
+      'If we can’t, you and Aihana agree to resolve the dispute through binding individual arbitration under the Consumer Arbitration Rules of the American Arbitration Association, rather than in court. Either party may still bring an eligible claim in small-claims court.',
+      'Class-action waiver. Disputes will be resolved only on an individual basis. You and Aihana each waive the right to bring or take part in a class, collective, or representative action.',
+      `Opt out. You can opt out of this arbitration agreement within 30 days of first accepting these terms by emailing ${URLS.email} with your account details. Opting out won’t affect the rest of these terms.`,
+      'If you are a consumer outside the United States, mandatory consumer-protection laws in your country may give you the right to bring claims locally, regardless of this section.',
+    ],
+  },
+  {
     heading: 'governing law',
     body: [
-      'These terms are governed by the laws of the State of California, United States, without regard to its conflict-of-laws rules. Any dispute that is not otherwise resolved will be brought in the state or federal courts located in California, and you consent to their jurisdiction.',
+      'These terms are governed by the laws of the State of California, United States, without regard to its conflict-of-laws rules. Any dispute not subject to arbitration will be brought in the state or federal courts located in California, and you consent to their jurisdiction.',
     ],
   },
   {

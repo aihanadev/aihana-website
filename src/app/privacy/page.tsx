@@ -104,6 +104,16 @@ const SECTIONS: Section[] = [
     ],
   },
   {
+    heading: 'if you’re in the EEA or UK',
+    body: [
+      'If you use Aihana from the European Economic Area or the United Kingdom, you have additional rights under the GDPR, and the following applies.',
+      'Legal bases. We process your data to perform our contract with you (running the games and your account), for our legitimate interests (keeping the table fair and safe, diagnosing crashes, and understanding engagement in aggregate), and on the basis of your consent where we ask for it (such as notifications and the optional Living Deck memory). Where we rely on consent, you can withdraw it at any time.',
+      `Your rights. You can request access to your data, correct it, erase it, restrict or object to how we process it, and ask for a copy you can take elsewhere. To exercise any of these, use the in-app controls or write to us at ${URLS.email}.`,
+      'Complaints. If you have concerns about how we handle your data, you can lodge a complaint with your local data-protection authority — in the UK, the Information Commissioner’s Office (ICO).',
+      'International transfers. Because our providers operate primarily in the United States, your information is transferred there under appropriate safeguards, such as the European Commission’s Standard Contractual Clauses.',
+    ],
+  },
+  {
     heading: 'changes to this policy',
     body: [
       'If we make a material change, we’ll update this page and the date above. Continued use after a change means you accept the updated policy.',
