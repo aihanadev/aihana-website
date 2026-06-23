@@ -4,12 +4,12 @@ import { useEffect, useState } from 'react';
 import { URLS } from '@/lib/constants';
 
 // ─────────────────────────────────────────────────────────────────────────────
-// LAUNCH SWITCH — flip this to `true` the moment the app is PUBLICLY live on the
-// App Store (status "Ready for Sale"/"Available" in App Store Connect, not just
-// TestFlight). When true, scanners auto-redirect to the right store for their
-// platform. When false, they see the "launching soon" state below. This is the
-// ONLY change needed on launch day — the printed QR keeps pointing at /download.
-const APP_LIVE = false;
+// LAUNCH SWITCH — `true` once the flyer goes out for the World Cup event. iOS
+// scanners auto-redirect to the App Store listing; the listing resolves once the
+// build is approved + released (Manual release, submitted 2026-06-22). Android
+// has no app yet, so Android/desktop see the App Store button + an "iOS only"
+// note rather than a dead Play Store link.
+const APP_LIVE = true;
 // ─────────────────────────────────────────────────────────────────────────────
 
 type Platform = 'ios' | 'android' | 'other';
@@ -31,9 +31,9 @@ export default function DownloadClient() {
     setPlatform(p);
 
     if (APP_LIVE) {
-      // Send mobile scanners straight to their store; desktop sees the buttons.
+      // Only iOS auto-redirects — that's the only store we're live on. Android +
+      // desktop fall through to the button/note view below.
       if (p === 'ios') window.location.href = URLS.appStore;
-      else if (p === 'android') window.location.href = URLS.googlePlay;
     }
   }, []);
 
@@ -80,15 +80,22 @@ export default function DownloadClient() {
 
       {APP_LIVE ? (
         <>
-          {/* Mobile already redirected in the effect; this is the desktop /
-              fallback view (and the moment before a mobile redirect fires). */}
+          {/* iOS already redirected in the effect; this is the desktop / Android
+              fallback view (and the moment before an iOS redirect fires). */}
           <a href={URLS.appStore} style={giltBtn}>Get it on the App Store</a>
-          {platform === 'android' && (
-            <a href={URLS.googlePlay} style={ghostLink}>or on Google Play</a>
+          {platform === 'android' ? (
+            <p style={{ fontSize: 13, opacity: 0.55, maxWidth: 320, lineHeight: 1.5 }}>
+              iPhone only for now — Android is coming. Tap above on an iPhone, or
+              leave your number and we’ll tell you when Android lands.
+            </p>
+          ) : (
+            <p style={{ fontSize: 13, opacity: 0.55, maxWidth: 320, lineHeight: 1.5 }}>
+              If the App Store doesn’t open automatically, tap the button above.
+            </p>
           )}
-          <p style={{ fontSize: 13, opacity: 0.55, maxWidth: 320, lineHeight: 1.5 }}>
-            If the App Store doesn’t open automatically, tap the button above.
-          </p>
+          {platform === 'android' && (
+            <a href={URLS.notifyForm} style={ghostLink}>Notify me about Android</a>
+          )}
         </>
       ) : (
         <>
