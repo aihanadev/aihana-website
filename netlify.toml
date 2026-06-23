@@ -10,3 +10,13 @@
   from = "/join/*"
   to = "/join.html"
   status = 200
+
+# Apple App Site Association MUST be served as application/json for iOS Universal
+# Links to resolve. The Next route handler sets that content-type, but
+# `output: export` writes only the body to an extension-less file, so Netlify
+# defaults it to text/plain. Force it back here. (Path has no .json extension by
+# Apple's spec.)
+[[headers]]
+  for = "/.well-known/apple-app-site-association"
+  [headers.values]
+    Content-Type = "application/json"
