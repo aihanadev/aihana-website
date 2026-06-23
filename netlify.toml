@@ -1,3 +1,12 @@
 [build]
   command = "npm run build"
   publish = "out"
+
+# Invite deep-links use the path form (/join/<token>), but the site is a static
+# export with a single /join page. Serve that page for any /join/* URL (200 =
+# rewrite, not redirect — the browser URL stays /join/<token> so JoinClient can
+# read the token). The bare /join page is served normally by Netlify.
+[[redirects]]
+  from = "/join/*"
+  to = "/join.html"
+  status = 200
