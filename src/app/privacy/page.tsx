@@ -29,7 +29,8 @@ const SECTIONS: Section[] = [
       'Gameplay. As you play, we record game events — the moves made, cards played, rounds and outcomes — so games can resume, so the dealer can recall what happened, and so your card history (the “Living Deck”) can tell the story of your play. We also keep basic device and session information (a device identifier, app version, and timing) to run the multiplayer connection and understand engagement.',
       'Notifications. If you turn them on, we register a device push token so we can send alerts — for example, when it’s your turn or a friend invites you to a table. You can turn notifications off at any time in your device settings.',
       'What you say to the dealer. When you ask the dealer a question, teach the table a rule, or chat during a game, we process that text to generate a response (see “the dealer, and your words” below).',
-      'Diagnostics. If the app crashes or hits an error, we collect a crash report with technical details so we can fix it.',
+      'Feedback. If you report a problem or send feedback from inside the app, we collect your message along with basic technical context (the game, app version, and device) so we can look into it.',
+      'Diagnostics. If the app crashes or hits an error, we collect a crash report with technical details, along with basic performance diagnostics (such as launch time and responsiveness), so we can fix issues and keep the app fast.',
     ],
   },
   {
