@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import './globals.css';
+import { URLS, SOCIALS } from '@/lib/constants';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://aihana.io'),
@@ -28,6 +29,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
+    site: '@aihana_cards',
+    creator: '@aihana_cards',
     title: 'Aihana — A Dealer Who Remembers™',
     description: 'Cards that remember. A dealer who learns. Tables that play fair.',
     images: ['/og-image.png'],
@@ -42,9 +45,27 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  // JSON-LD Organization schema — declares our official social
+  // accounts via `sameAs` so search engines and social crawlers
+  // treat these channels as canonically ours (knowledge-panel links,
+  // verified-account association).
+  const orgSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: 'Aihana',
+    url: 'https://aihana.io',
+    logo: 'https://aihana.io/apple-touch-icon.png',
+    email: URLS.email,
+    sameAs: SOCIALS.map((s) => s.href),
+  };
+
   return (
     <html lang="en">
       <body className="bg-aihana-paper text-aihana-ink antialiased">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }}
+        />
         {children}
       </body>
     </html>

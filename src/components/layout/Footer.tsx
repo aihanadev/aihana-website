@@ -6,7 +6,7 @@
 // Remembers — Don't recommend re-filing. Use as proper nouns").
 
 import Link from 'next/link';
-import { URLS } from '@/lib/constants';
+import { URLS, SOCIALS } from '@/lib/constants';
 
 const gameLinks = [
   'Hearts', 'War', 'Go Fish', 'Crazy Eights',
@@ -99,9 +99,20 @@ export function Footer() {
             <ColumnHeader>connect</ColumnHeader>
             <ul className="space-y-1.5">
               <li><a href={`mailto:${URLS.email}`} className={linkClass}>{URLS.email}</a></li>
-              <li><a href={URLS.reddit} target="_blank" rel="noopener noreferrer" className={linkClass}>Reddit r/aihana</a></li>
               <li><a href={URLS.appStore} target="_blank" rel="noopener noreferrer" className={linkClass}>App Store</a></li>
               <li><span className={`${linkClass} opacity-50 cursor-default`}>Google Play · soon</span></li>
+            </ul>
+
+            {/* Follow — every social channel, one line each. */}
+            <ColumnHeader className="mt-6">follow</ColumnHeader>
+            <ul className="space-y-1.5">
+              {SOCIALS.map((s) => (
+                <li key={s.label}>
+                  <a href={s.href} target="_blank" rel="noopener noreferrer" className={linkClass}>
+                    {s.label} <span className="text-aihana-ink-faint">{s.handle}</span>
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
         </div>
@@ -133,10 +144,10 @@ export function Footer() {
 
 // ── Sub-components ────────────────────────────────────────
 
-function ColumnHeader({ children }: { children: React.ReactNode }) {
+function ColumnHeader({ children, className = '' }: { children: React.ReactNode; className?: string }) {
   return (
     <h4
-      className="text-aihana-ink-faint uppercase mb-4"
+      className={`text-aihana-ink-faint uppercase mb-4 ${className}`}
       style={{
         fontFamily: 'var(--font-folio)',
         fontSize: '0.65rem',

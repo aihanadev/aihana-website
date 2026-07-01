@@ -1,6 +1,6 @@
 import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
-import { URLS } from '@/lib/constants';
+import { URLS, SOCIALS } from '@/lib/constants';
 
 export const metadata = {
   title: 'Community — Aihana',
@@ -123,6 +123,63 @@ export default function CommunityPage() {
                 </a>
               </div>
             ))}
+          </div>
+
+          {/* Follow the table — every social channel as a paper chip. */}
+          <div className="mt-20">
+            <div className="hairline-rule mb-10" />
+            <h2
+              className="text-aihana-ink text-center mb-3"
+              style={{
+                fontFamily: FOLIO_FONT,
+                fontWeight: 400,
+                fontStyle: 'italic',
+                fontSize: 'clamp(1.5rem, 3vw, 2rem)',
+              }}
+            >
+              follow the table.
+            </h2>
+            <p
+              className="text-aihana-ink-soft italic text-center mb-8"
+              style={{ fontFamily: FOLIO_FONT, fontSize: '1rem' }}
+            >
+              the dealer keeps a presence in a few rooms. find us there.
+            </p>
+            <div className="flex flex-wrap justify-center gap-3">
+              {SOCIALS.map((s) => (
+                <a
+                  key={s.label}
+                  href={s.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group inline-flex items-baseline gap-2 px-5 py-2.5
+                    bg-aihana-paper-high border border-aihana-ink/20
+                    hover:-translate-y-0.5 hover:border-aihana-ink/45
+                    transition-all duration-300"
+                  style={{
+                    borderRadius: 3,
+                    boxShadow: '0 3px 10px rgba(26,18,40,0.06)',
+                  }}
+                >
+                  <span
+                    className="text-aihana-ink"
+                    style={{
+                      fontFamily: FOLIO_FONT,
+                      fontStyle: 'italic',
+                      fontSize: '1rem',
+                    }}
+                  >
+                    {s.label}
+                  </span>
+                  <span
+                    className="text-aihana-ink-faint group-hover:text-aihana-ink-soft transition-colors"
+                    style={{ fontFamily: FOLIO_FONT, fontSize: '0.82rem' }}
+                  >
+                    {s.handle}
+                  </span>
+                </a>
+              ))}
+            </div>
           </div>
         </div>
       </div>

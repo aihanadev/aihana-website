@@ -3,11 +3,34 @@ export const URLS = {
   notifyForm: 'https://docs.google.com/forms/d/e/1FAIpQLSelN0m0twI7-2TPMUUtK7pwDAveQ6raQnzOqSzC7a5owrTT0g/viewform',
   partnershipsForm: 'https://docs.google.com/forms/d/e/1FAIpQLSdVer40h-TM49JIdJ6-vDhOUGLgcGoL8vBZqWsEf23LkSaBpg/viewform',
   reddit: 'https://www.reddit.com/r/aihana/',
+  x: 'https://x.com/aihana_cards',
+  instagram: 'https://www.instagram.com/aihana.io/',
+  tiktok: 'https://www.tiktok.com/@aihana.llc',
+  linkedin: 'https://www.linkedin.com/company/aihana/',
   appStore: 'https://apps.apple.com/app/id6749252997',
   // Android not yet shipped — package id matches app.json (io.aihana.app) for when it does.
   googlePlay: 'https://play.google.com/store/apps/details?id=io.aihana.app',
   email: 'team@aihana.io',
 } as const;
+
+// ── Social Accounts ───────────────────────────────────────
+// Single source of truth for every place the site links out to a
+// social channel (Footer connect column, Community follow row, and
+// the layout's JSON-LD `sameAs` for search/social-card SEO).
+// `handle` is the display form; `label` the human channel name.
+export interface SocialLink {
+  label: string;
+  handle: string;
+  href: string;
+}
+
+export const SOCIALS: SocialLink[] = [
+  { label: 'Reddit', handle: 'r/aihana', href: URLS.reddit },
+  { label: 'X', handle: '@aihana_cards', href: URLS.x },
+  { label: 'Instagram', handle: '@aihana.io', href: URLS.instagram },
+  { label: 'TikTok', handle: '@aihana.llc', href: URLS.tiktok },
+  { label: 'LinkedIn', handle: 'aihana', href: URLS.linkedin },
+];
 
 // ── Game Data (from registry.ts) ──────────────────────────
 export interface GameInfo {
